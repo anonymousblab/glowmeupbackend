@@ -33,6 +33,9 @@ export function createApp({ database, corsOrigin, openaiApiKey = '', openaiModel
   // Enable it later with AI_ENABLED=true and OPENAI_API_KEY in Railway.
   const aiClient = createAiClient({ apiKey: openaiApiKey, enabled: aiEnabled });
   app.disable('x-powered-by');
+  // Railway terminates HTTPS in front of the app and forwards the client IP.
+  // Trust exactly that first proxy so express-rate-limit can identify clients.
+  app.set('trust proxy', 1);
   app.use(cors({ origin: corsOrigin.split(',').map((origin) => origin.trim()) }));
   app.use(express.json({ limit: '16kb' }));
 

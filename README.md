@@ -8,13 +8,18 @@ Set these Railway variables:
 
 ```text
 DATABASE_URL=your_supabase_postgresql_connection_string
-PG_SSL_REJECT_UNAUTHORIZED=true
+PG_SSL_REJECT_UNAUTHORIZED=false
 CORS_ORIGIN=https://your-flutter-web-domain
 PORT=3000
 OPENAI_API_KEY=your_openai_api_key
 OPENAI_MODEL=gpt-4o-mini
 AI_ENABLED=false
 ```
+
+Supabase's pooled PostgreSQL connection can present a certificate chain that
+Node does not trust inside Railway. Keep TLS enabled through `DATABASE_URL`, but
+set `PG_SSL_REJECT_UNAUTHORIZED=false` for this deployment so the pool can
+connect. Do not append Railway's internal port to the public API URL.
 
 Deploy command:
 
