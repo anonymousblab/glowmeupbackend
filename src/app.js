@@ -3,6 +3,9 @@ import express from 'express';
 import cors from 'cors';
 import { rateLimit } from 'express-rate-limit';
 import { z } from 'zod';
+import { connectData, glowyData, knowMeData, suitsMeData } from './feature_data.js';
+import { createAiClient } from './ai/client.js';
+import { generateGlowyReply } from './ai/glowy_service.js';
 
 import { hashPassword, verifyPassword, newSessionToken, hashToken } from './security.js';
 
@@ -20,9 +23,15 @@ const questionnaireSchema = z.object({
 }).strict();
 const consentSchema = z.object({ accepted: z.literal(true) }).strict();
 const sessionDays = 7;
+const aiMessageSchema = z.object({
+  message: z.string().trim().min(1).max(2000),
+}).strict();
 
-export function createApp({ database, corsOrigin }) {
+export function createApp({ database, corsOrigin, openaiApiKey = '', openaiModel = 'gpt-4o-mini', aiEnabled = false }) {
   const app = express();
+  // AI integration is intentionally disabled for the current MVP preview.
+  // Enable it later with AI_ENABLED=true and OPENAI_API_KEY in Railway.
+  const aiClient = createAiClient({ apiKey: openaiApiKey, enabled: aiEnabled });
   app.disable('x-powered-by');
   app.use(cors({ origin: corsOrigin.split(',').map((origin) => origin.trim()) }));
   app.use(express.json({ limit: '16kb' }));
@@ -90,6 +99,32 @@ export function createApp({ database, corsOrigin }) {
       next();
     } catch (error) { next(error); }
   });
+
+  app.post('/api/ai/chat', async (req, res, next) => {
+    const parsed = aiMessageSchema.safeParse(req.body);
+    if (!parsed.success) return res.status(400).json({ error: 'Message must be between 1 and 2000 characters.' });
+    if (!aiEnabled || !aiClient) return res.status(503).json({ error: 'Glowy AI is temporarily disabled.' });
+    try {
+      const { rows } = await database.query(
+        'select height_cm, questionnaire from public.app_profiles where user_id = $1',
+        [req.userId],
+      );
+      const profile = rows[0] ?? {};
+      const reply = await generateGlowyReply({
+        client: aiClient,
+        model: openaiModel,
+        profile,
+        message: parsed.data.message,
+      });
+      res.json({ reply });
+    } catch (error) { next(error); }
+  });
+
+  // Separate read-only MVP contracts for each product feature.
+  app.get('/api/know-me', (_req, res) => res.json({ feature: 'know-me', data: knowMeData }));
+  app.get('/api/suits-me', (_req, res) => res.json({ feature: 'suits-me', data: suitsMeData }));
+  app.get('/api/connect', (_req, res) => res.json({ feature: 'connect', data: connectData }));
+  app.get('/api/glowy', (_req, res) => res.json({ feature: 'glowy', data: glowyData, aiEnabled }));
 
   app.post('/api/auth/sign-out', async (req, res, next) => {
     try {
