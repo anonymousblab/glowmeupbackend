@@ -8,8 +8,5 @@ export function readConfig(env = process.env) {
     port: Number(env.PORT || 3000),
     databaseUrl: env.DATABASE_URL,
     corsOrigin: env.CORS_ORIGIN || 'http://localhost:3000',
-    openaiApiKey: env.OPENAI_API_KEY || '',
-    openaiModel: env.OPENAI_MODEL || 'gpt-4o-mini',
-    aiEnabled: env.AI_ENABLED === 'true',
   };
 }

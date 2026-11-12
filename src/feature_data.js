@@ -1,4 +1,59 @@
 // MVP seed data is split by product feature so each screen has its own API contract.
+
+const styleByVibe = {
+  Casual: ['minimalist', 'sporty', 'streetwear'],
+  Minimal: ['minimalist', 'classic'],
+  Street: ['streetwear', 'edgy', 'sporty'],
+  Formal: ['classic', 'minimalist'],
+  Chic: ['classic', 'romantic', 'edgy'],
+  Other: [],
+};
+
+const colorsByPreference = {
+  Cool: ['blue', 'blue_green', 'pink', 'grey'],
+  Warm: ['brown', 'beige', 'red', 'green'],
+  Neutral: ['black', 'white', 'grey', 'beige'],
+};
+
+const titleCase = (value) => value == null || value === ''
+  ? 'Unknown'
+  : value.replaceAll('_', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
+
+function recommendationFor(item, questionnaire) {
+  const preferredStyles = styleByVibe[questionnaire?.vibe] ?? [];
+  const preferredColors = colorsByPreference[questionnaire?.color] ?? [];
+  const styleMatches = item.style_tags.filter((tag) => preferredStyles.includes(tag));
+  const colorMatches = preferredColors.includes(item.color_family);
+  const confidenceBonus = item.visual_confidence === 'high' ? 5 : item.visual_confidence === 'medium' ? 2 : 0;
+  const match = Math.min(98, 72 + styleMatches.length * 7 + (colorMatches ? 9 : 0) + confidenceBonus);
+  const reasons = [];
+
+  if (styleMatches.length > 0) reasons.push(`Matches your ${titleCase(styleMatches[0])} style preference`);
+  if (colorMatches) reasons.push(`${titleCase(item.color_family)} fits your selected color direction`);
+  if (item.occasion_tags.length > 0) reasons.push(`Suitable to explore for ${titleCase(item.occasion_tags[0])} styling`);
+  if (reasons.length === 0) reasons.push('Adds variety to your current style direction');
+
+  return {
+    id: item.product_id,
+    title: item.product_name,
+    category: item.product_group === 'tops' ? 'Tops' : 'Bottoms',
+    subcategory: titleCase(item.subcategory),
+    price: null,
+    match,
+    color: titleCase(item.primary_color),
+    imageUrl: `/dataset/images/${item.product_id}.jpg`,
+    styleTags: item.style_tags.map(titleCase),
+    occasionTags: item.occasion_tags.map(titleCase),
+    coverageTags: item.coverage_tags.map(titleCase),
+    silhouette: titleCase(item.apparent_silhouette),
+    garmentLength: titleCase(item.garment_length),
+    formality: titleCase(item.formality),
+    visualConfidence: titleCase(item.visual_confidence),
+    visibleDetails: item.visible_details,
+    reasons,
+    reviewStatus: item.review_status,
+  };
+}
 export const knowMeData = {
   body: {
     heightCm: 160,
@@ -20,15 +75,29 @@ export const knowMeData = {
   style: { archetype: 'Modern Minimal', traits: ['Calm', 'Structured', 'Expressive'], quiz: ['Casual', 'Minimal', 'Street', 'Formal', 'Chic'] },
 };
 
-export const suitsMeData = {
-  profile: { match: 93, confidence: 'High' },
-  recommendations: [
-    { id: 'suits-001', title: 'Structured Blazer', category: 'Outfit', price: 'Rp249.000', match: 94, color: 'Plum', imageKey: 'model_editorial' },
-    { id: 'suits-002', title: 'Soft Knit Top', category: 'Top', price: 'Rp179.000', match: 91, color: 'Warm Ivory', imageKey: 'model_color' },
-    { id: 'suits-003', title: 'Everyday Blush Look', category: 'Beauty', price: 'Rp129.000', match: 89, color: 'Coral', imageKey: 'model_face' },
-  ],
-  categories: ['For You', 'Outfit', 'Top', 'Beauty'],
-};
+export function buildSuitsMeData(items, questionnaire = {}) {
+  const recommendations = items
+    .map((item) => recommendationFor(item, questionnaire))
+    .sort((left, right) => right.match - left.match || left.id.localeCompare(right.id));
+
+  return {
+    profile: {
+      match: recommendations[0]?.match ?? 0,
+      confidence: 'Exploratory',
+      questionnaire,
+    },
+    recommendations,
+    categories: ['For You', 'Tops', 'Bottoms', 'Casual', 'Smart Casual'],
+    catalog: {
+      total: recommendations.length,
+      schemaVersion: items[0]?.annotation_schema_version ?? null,
+      labelStatus: items.every((item) => item.review_status === 'approved')
+        ? 'approved'
+        : 'needs_human_review',
+      notice: 'Catalog labels are a first-pass review. Price, stock, material, sizing, and guaranteed fit are unavailable.',
+    },
+  };
+}
 
 export const connectData = {
   tabs: ['For You', 'People Like Me', 'Reviews'],

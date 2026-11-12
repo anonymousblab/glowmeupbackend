@@ -1,0 +1,2609 @@
+{
+  "dataset": "GlowMeUp_50_womens_tops_bottoms",
+  "dataset_schema_version": "working_v0.2",
+  "label_status": "assistant_first_pass_requires_human_review",
+  "annotations": [
+    {
+      "product_id": "GM001",
+      "subcategory": "button_shirt",
+      "primary_color": "teal",
+      "secondary_colors": [
+        "cream",
+        "light_teal"
+      ],
+      "color_family": "blue_green",
+      "color_value": "medium",
+      "color_chroma": "muted",
+      "color_contrast": "high",
+      "pattern_tags": [
+        "color_block"
+      ],
+      "apparent_silhouette": "relaxed",
+      "garment_length": "hip",
+      "sleeve_length": "long",
+      "neckline": "collared",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered",
+        "arms_covered"
+      ],
+      "style_tags": [
+        "artsy",
+        "streetwear"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "campus",
+        "travel"
+      ],
+      "formality": "casual",
+      "visible_details": "Multicolor teal-and-cream shirt with patch pockets, dropped shoulders",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Actual fabric and intended fit not verified",
+      "group": "tops",
+      "product_name_source_title": "100 Cotton Button Up Shirt With Chest Pockets",
+      "image_path": "images/GM001.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/100-cotton-button-up-shirt-with-chest-pockets.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "978c660fdfa26842a82e98920026a2ba1a98b56b2361d9134edd6bc49d58a4ad",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM002",
+      "subcategory": "blouse",
+      "primary_color": "taupe",
+      "secondary_colors": [],
+      "color_family": "brown",
+      "color_value": "medium",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "relaxed",
+      "garment_length": "hip",
+      "sleeve_length": "elbow",
+      "neckline": "v_neck",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered"
+      ],
+      "style_tags": [
+        "classic",
+        "romantic"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "work"
+      ],
+      "formality": "smart_casual",
+      "visible_details": "Satin-like sheen, gathered sleeves and loose drape",
+      "visual_confidence": "medium",
+      "uncertainty_notes": "Material sheen is visual only, not proof of satin content",
+      "group": "tops",
+      "product_name_source_title": "Annie Wear Satin V Neck Open Short Sleeve Woven Blouse Top",
+      "image_path": "images/GM002.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/annie-wear-satin-v-neck-open-short-sleeve-woven-blouse-top.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "2d885774f7c7e74e6e8c9c64daed2b6889eb871a830712e2896a5de359a50287",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "medium",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM003",
+      "subcategory": "fitted_top",
+      "primary_color": "royal_blue",
+      "secondary_colors": [],
+      "color_family": "blue",
+      "color_value": "medium",
+      "color_chroma": "vivid",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "fitted",
+      "garment_length": "hip",
+      "sleeve_length": "long",
+      "neckline": "square_neck",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered",
+        "arms_covered",
+        "sheer_sleeves"
+      ],
+      "style_tags": [
+        "romantic",
+        "edgy"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "festive_event"
+      ],
+      "formality": "occasionwear",
+      "visible_details": "Ruched torso, translucent-looking sleeves and square neckline",
+      "visual_confidence": "medium",
+      "uncertainty_notes": "Transparency of sleeves and true size fit need verification",
+      "group": "tops",
+      "product_name_source_title": "Active Basic Square Neck Mesh Long Sleeve Shirring Top",
+      "image_path": "images/GM003.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/active-basic-square-neck-mesh-long-sleeve-shirring-top.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "5c2ff2c4ddf74a7109efb1d0899e74be551b37f0a787342d555060b34021e691",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "medium",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM004",
+      "subcategory": "ribbed_top",
+      "primary_color": "light_pink",
+      "secondary_colors": [],
+      "color_family": "pink",
+      "color_value": "light",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "straight",
+      "garment_length": "hip",
+      "sleeve_length": "short",
+      "neckline": "v_neck",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered"
+      ],
+      "style_tags": [
+        "minimalist",
+        "romantic"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "campus"
+      ],
+      "formality": "casual",
+      "visible_details": "Soft pink V-neck short-sleeved ribbed appearance",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Ribbed texture needs high-resolution verification",
+      "group": "tops",
+      "product_name_source_title": "Active Basic Lace Trim V Neck Short Sleeve Ribbed Top",
+      "image_path": "images/GM004.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/active-basic-lace-trim-v-neck-short-sleeve-ribbed-top.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "7438b75953d99f1622b4d125273bc153647fdf2bbe6421dbfa5d924ce03771ba",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM005",
+      "subcategory": "knit_top",
+      "primary_color": "dark_teal",
+      "secondary_colors": [],
+      "color_family": "blue_green",
+      "color_value": "dark",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "relaxed",
+      "garment_length": "hip",
+      "sleeve_length": "long",
+      "neckline": "mock_neck",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered",
+        "arms_covered",
+        "high_neckline"
+      ],
+      "style_tags": [
+        "minimalist",
+        "classic"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "campus",
+        "work"
+      ],
+      "formality": "smart_casual",
+      "visible_details": "Dark muted green-blue sweater with long sleeves and gathered/dropped upper arm",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Fabric structure and advertised fit unverified",
+      "group": "tops",
+      "product_name_source_title": "Basic Bae Full Size Ribbed Exposed Seam Mock Neck Knit Top",
+      "image_path": "images/GM005.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/basic-bae-full-size-ribbed-exposed-seam-mock-neck-knit-top.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "c835be007a9e7770915cdbe3ece10662a760a3eab93c67cd3cb9ad74cb46ec58",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM006",
+      "subcategory": "t_shirt",
+      "primary_color": "medium_blue",
+      "secondary_colors": [
+        "red",
+        "white",
+        "dark_green"
+      ],
+      "color_family": "blue",
+      "color_value": "medium",
+      "color_chroma": "medium",
+      "color_contrast": "high",
+      "pattern_tags": [
+        "graphic"
+      ],
+      "apparent_silhouette": "relaxed",
+      "garment_length": "hip",
+      "sleeve_length": "short",
+      "neckline": "crew_neck",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered"
+      ],
+      "style_tags": [
+        "streetwear",
+        "artsy"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "campus",
+        "travel"
+      ],
+      "formality": "casual",
+      "visible_details": "Blue graphic tee featuring a large sunflower and flag motif",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Graphic details are low resolution",
+      "group": "tops",
+      "product_name_source_title": "Us Flag Flower Graphic Tee",
+      "image_path": "images/GM006.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/us-flag-flower-graphic-tee.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "05e883fa9d158f7e8b82dc13ebaf83dd71bc90214ae236e50be4e0c3b128cdd7",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM007",
+      "subcategory": "crochet_tunic",
+      "primary_color": "dusty_pink",
+      "secondary_colors": [
+        "maroon"
+      ],
+      "color_family": "pink",
+      "color_value": "medium",
+      "color_chroma": "muted",
+      "color_contrast": "medium",
+      "pattern_tags": [
+        "color_block"
+      ],
+      "apparent_silhouette": "straight",
+      "garment_length": "tunic",
+      "sleeve_length": "sleeveless",
+      "neckline": "round_neck",
+      "waist_rise": null,
+      "coverage_tags": [
+        "sheer_or_openwork",
+        "shoulders_exposed"
+      ],
+      "style_tags": [
+        "bohemian",
+        "romantic"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "travel",
+        "festive_event"
+      ],
+      "formality": "casual",
+      "visible_details": "Pink long open-crochet tunic or layering top",
+      "visual_confidence": "medium",
+      "uncertainty_notes": "Open-knit coverage requires a separate underlayer; length partly cropped",
+      "group": "tops",
+      "product_name_source_title": "Multi Color Crochet Tunic Top",
+      "image_path": "images/GM007.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/multi-color-crochet-tunic-top.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "630c7455c97c474aadd962cca73371bbfde40e2143bbf0b7f52fd3e418f27db5",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "medium",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM008",
+      "subcategory": "peplum_top",
+      "primary_color": "denim_blue",
+      "secondary_colors": [],
+      "color_family": "blue",
+      "color_value": "medium",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "peplum",
+      "garment_length": "hip",
+      "sleeve_length": "short",
+      "neckline": "collared",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered"
+      ],
+      "style_tags": [
+        "romantic",
+        "artsy"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "campus",
+        "festive_event"
+      ],
+      "formality": "smart_casual",
+      "visible_details": "Bow ties down front, peplum hem and short gathered sleeves",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Denim fabric name is not visually verified",
+      "group": "tops",
+      "product_name_source_title": "Annie Wear Stripe Front Bow Denim Peplum Blouse",
+      "image_path": "images/GM008.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/annie-wear-stripe-front-bow-denim-peplum-blouse.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "b18af14b765e85e15f6eb8e81fa4a86bc1f45638f09d2bf84515a9f0769daf18",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM009",
+      "subcategory": "blouse",
+      "primary_color": "turquoise_blue",
+      "secondary_colors": [],
+      "color_family": "blue",
+      "color_value": "medium",
+      "color_chroma": "vivid",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "straight",
+      "garment_length": "hip",
+      "sleeve_length": "short",
+      "neckline": "collared",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered"
+      ],
+      "style_tags": [
+        "classic",
+        "romantic"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "campus",
+        "work"
+      ],
+      "formality": "smart_casual",
+      "visible_details": "Short frilled cap sleeves, open collar and button front",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Fit on wearer unknown",
+      "group": "tops",
+      "product_name_source_title": "Annie Wear Relaxed Fit Ruffle Sleeve Woven Blouse Top",
+      "image_path": "images/GM009.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/annie-wear-relaxed-fit-ruffle-sleeve-woven-blouse-top.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "e6c5b3bcba805b11af863a6db1f64b1d97d1acdec0d23dcdfb445feedaf0af57",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM010",
+      "subcategory": "blouse",
+      "primary_color": "light_blue",
+      "secondary_colors": [
+        "cobalt_blue"
+      ],
+      "color_family": "blue",
+      "color_value": "light",
+      "color_chroma": "medium",
+      "color_contrast": "medium",
+      "pattern_tags": [
+        "color_block"
+      ],
+      "apparent_silhouette": "straight",
+      "garment_length": "hip",
+      "sleeve_length": "elbow",
+      "neckline": "notch_neck",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered"
+      ],
+      "style_tags": [
+        "artsy",
+        "romantic"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "campus"
+      ],
+      "formality": "casual",
+      "visible_details": "Light blue body and darker blue puff sleeves",
+      "visual_confidence": "medium",
+      "uncertainty_notes": "Garment length is inferred from partly cropped image",
+      "group": "tops",
+      "product_name_source_title": "Air Flow Color Block Puff Sleeves V Neck Top",
+      "image_path": "images/GM010.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/air-flow-color-block-puff-sleeves-v-neck-top.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "16525b832a6e8cf29741a80778f58d88dbd8048772f7b35c07371e14c4e0de19",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "medium",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM011",
+      "subcategory": "bodysuit",
+      "primary_color": "light_blue",
+      "secondary_colors": [],
+      "color_family": "blue",
+      "color_value": "light",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "fitted",
+      "garment_length": "waist",
+      "sleeve_length": "sleeveless",
+      "neckline": "square_neck",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_exposed"
+      ],
+      "style_tags": [
+        "minimalist",
+        "classic"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "campus"
+      ],
+      "formality": "casual",
+      "visible_details": "Pale blue fitted square-neck sleeveless bodysuit",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Bodysuit fastening cannot be seen in image",
+      "group": "tops",
+      "product_name_source_title": "And The Why Ribbed Square Neck Bodysuit",
+      "image_path": "images/GM011.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/and-the-why-ribbed-square-neck-bodysuit.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "744f9f30e75c34d928a900669a249bb654c1db8bb1fc52994cb0892a41edf041",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM012",
+      "subcategory": "knit_top",
+      "primary_color": "camel",
+      "secondary_colors": [
+        "tan"
+      ],
+      "color_family": "brown",
+      "color_value": "medium",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "fitted",
+      "garment_length": "waist",
+      "sleeve_length": "long",
+      "neckline": "mock_neck",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered",
+        "arms_covered",
+        "high_neckline"
+      ],
+      "style_tags": [
+        "classic",
+        "romantic"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "work"
+      ],
+      "formality": "smart_casual",
+      "visible_details": "Camel rib-knit mock-neck torso with patterned sleeves",
+      "visual_confidence": "medium",
+      "uncertainty_notes": "Sleeve material and cropped length ambiguous",
+      "group": "tops",
+      "product_name_source_title": "Aemi Co Mock Neck Ribbed Knit Top With Crochet Sleeve",
+      "image_path": "images/GM012.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/aemi-co-mock-neck-ribbed-knit-top-with-crochet-sleeve.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "25caf2619cdb6bc06d7e728a91711921389737ed73420071683f048048684aea",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "medium",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM013",
+      "subcategory": "blouse",
+      "primary_color": "black",
+      "secondary_colors": [],
+      "color_family": "black",
+      "color_value": "dark",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "straight",
+      "garment_length": null,
+      "sleeve_length": "long",
+      "neckline": "asymmetric_neck",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered",
+        "arms_covered"
+      ],
+      "style_tags": [
+        "classic",
+        "edgy"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "work"
+      ],
+      "formality": "smart_casual",
+      "visible_details": "Black long-sleeved top with asymmetric folded neckline",
+      "visual_confidence": "low",
+      "uncertainty_notes": "Bottom hem and true silhouette are cropped out",
+      "group": "tops",
+      "product_name_source_title": "Asymmetrical Neck Long Sleeve Blouse",
+      "image_path": "images/GM013.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/asymmetrical-neck-long-sleeve-blouse.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "023f3a4b318a2287d1c91a25a95e422974b6753da3726404eb39393726c8b10c",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "high",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM014",
+      "subcategory": "peplum_top",
+      "primary_color": "rust_red",
+      "secondary_colors": [
+        "cream"
+      ],
+      "color_family": "red",
+      "color_value": "medium",
+      "color_chroma": "medium",
+      "color_contrast": "medium",
+      "pattern_tags": [
+        "floral"
+      ],
+      "apparent_silhouette": "peplum",
+      "garment_length": "hip",
+      "sleeve_length": "long",
+      "neckline": "round_neck",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered",
+        "arms_covered"
+      ],
+      "style_tags": [
+        "romantic",
+        "bohemian"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "festive_event"
+      ],
+      "formality": "casual",
+      "visible_details": "Rust red small floral print with waist gathering and sleeves",
+      "visual_confidence": "medium",
+      "uncertainty_notes": "Small printed details indistinct at 200px",
+      "group": "tops",
+      "product_name_source_title": "Floral Long Sleeve Blouse With Smocked Ruffled Hem",
+      "image_path": "images/GM014.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/floral-long-sleeve-blouse-with-smocked-ruffled-hem.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "dc8325826e460c89d9c8d638ab6e3566222cb0e4eb01cbd501b935330675ef00",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "medium",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM015",
+      "subcategory": "blouse",
+      "primary_color": "cream",
+      "secondary_colors": [
+        "light_pink",
+        "light_blue"
+      ],
+      "color_family": "multicolor",
+      "color_value": "light",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "floral"
+      ],
+      "apparent_silhouette": "relaxed",
+      "garment_length": "hip",
+      "sleeve_length": "long",
+      "neckline": "off_shoulder",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_exposed"
+      ],
+      "style_tags": [
+        "romantic",
+        "bohemian"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "festive_event",
+        "travel"
+      ],
+      "formality": "occasionwear",
+      "visible_details": "Pastel floral off-shoulder ruffled blouse",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Length not fully shown",
+      "group": "tops",
+      "product_name_source_title": "Off Shoulder Floral Blouse With Ruffles",
+      "image_path": "images/GM015.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/off-shoulder-floral-blouse-with-ruffles.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "74d2800b81ce56b6f90ec8cd1a2e96a817901717611a0401b68beff5b310b492",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM016",
+      "subcategory": "blouse",
+      "primary_color": "black",
+      "secondary_colors": [],
+      "color_family": "black",
+      "color_value": "dark",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "straight",
+      "garment_length": "hip",
+      "sleeve_length": "short",
+      "neckline": "crew_neck",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered"
+      ],
+      "style_tags": [
+        "classic",
+        "minimalist"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "campus",
+        "work"
+      ],
+      "formality": "smart_casual",
+      "visible_details": "Black flutter sleeve blouse with decorative lace/openwork upper panel",
+      "visual_confidence": "medium",
+      "uncertainty_notes": "Sheerness and lace details need high resolution",
+      "group": "tops",
+      "product_name_source_title": "Active Basic Ruffle Short Sleeve Crochet Blouse",
+      "image_path": "images/GM016.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/active-basic-ruffle-short-sleeve-crochet-blouse.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "330ba3eb84579b50b5cfe70e042334485a61275b15b8e8d1d74b4368c6fda590",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "medium",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM017",
+      "subcategory": "tank_top",
+      "primary_color": "bright_blue",
+      "secondary_colors": [],
+      "color_family": "blue",
+      "color_value": "medium",
+      "color_chroma": "vivid",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "straight",
+      "garment_length": "hip",
+      "sleeve_length": "sleeveless",
+      "neckline": "v_neck",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_exposed"
+      ],
+      "style_tags": [
+        "minimalist",
+        "sporty"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "campus",
+        "travel"
+      ],
+      "formality": "casual",
+      "visible_details": "Bright blue sleeveless V-neck loose tank",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Actual material and intended fit not verified",
+      "group": "tops",
+      "product_name_source_title": "Deep Sky Double Gauze Raw Edge V Neck Tank Top",
+      "image_path": "images/GM017.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/deep-sky-double-gauze-raw-edge-v-neck-tank-top.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "3e1abdd2c5549bec3a008be3bce152508283c10fa2e045c17781434ce8144a17",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM018",
+      "subcategory": "crop_top",
+      "primary_color": "bright_blue",
+      "secondary_colors": [
+        "red",
+        "pink"
+      ],
+      "color_family": "blue",
+      "color_value": "medium",
+      "color_chroma": "vivid",
+      "color_contrast": "high",
+      "pattern_tags": [
+        "floral"
+      ],
+      "apparent_silhouette": "fitted",
+      "garment_length": "cropped",
+      "sleeve_length": "short",
+      "neckline": "square_neck",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered",
+        "cropped_hem"
+      ],
+      "style_tags": [
+        "romantic",
+        "artsy"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "festive_event",
+        "travel"
+      ],
+      "formality": "casual",
+      "visible_details": "Blue floral puff-sleeve crop top and matching skirt are pictured",
+      "visual_confidence": "medium",
+      "uncertainty_notes": "Image contains matching skirt: annotation targets TOP only",
+      "group": "tops",
+      "product_name_source_title": "Davi Dani Smocing Bodice Puff Short Sleeve Printed Crop Top",
+      "image_path": "images/GM018.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/davi-dani-smocing-bodice-puff-short-sleeve-printed-crop-top.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "2af0e72d215f49eab485b697a4c42fc509d39981c51be204175ea7e1b87bfffa",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "medium",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM019",
+      "subcategory": "crop_top",
+      "primary_color": "charcoal_grey",
+      "secondary_colors": [],
+      "color_family": "grey",
+      "color_value": "dark",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "fitted",
+      "garment_length": "cropped",
+      "sleeve_length": "short",
+      "neckline": "crew_neck",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered",
+        "cropped_hem"
+      ],
+      "style_tags": [
+        "minimalist",
+        "streetwear"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "campus"
+      ],
+      "formality": "casual",
+      "visible_details": "Dark charcoal cropped short-sleeve sweater-like top",
+      "visual_confidence": "medium",
+      "uncertainty_notes": "Cropped length approximate; textile composition unknown",
+      "group": "tops",
+      "product_name_source_title": "Lightweight Sweater Crop Top 1",
+      "image_path": "images/GM019.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/lightweight-sweater-crop-top-1.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "7eadc91570d820b6a9fcd683c1fd8db089becdf0dff3281329f086bb120c3720",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "medium",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM020",
+      "subcategory": "peplum_top",
+      "primary_color": "black",
+      "secondary_colors": [
+        "white"
+      ],
+      "color_family": "multicolor",
+      "color_value": "medium",
+      "color_chroma": "muted",
+      "color_contrast": "high",
+      "pattern_tags": [
+        "checkered"
+      ],
+      "apparent_silhouette": "peplum",
+      "garment_length": "hip",
+      "sleeve_length": "long",
+      "neckline": "v_neck",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered",
+        "arms_covered"
+      ],
+      "style_tags": [
+        "artsy",
+        "classic"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "work",
+        "festive_event"
+      ],
+      "formality": "smart_casual",
+      "visible_details": "Bold black-white checkerboard top with fitted waist and peplum",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Slight neckline variation due low resolution",
+      "group": "tops",
+      "product_name_source_title": "Checkered V Neck Balloon Sleeve Peplum Blouse",
+      "image_path": "images/GM020.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/checkered-v-neck-balloon-sleeve-peplum-blouse.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "beda280180b2b32b99052fb66fb9967fd80cb246e93e120e49d2bdae7f96164a",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM021",
+      "subcategory": "knit_top",
+      "primary_color": "dusty_blue",
+      "secondary_colors": [],
+      "color_family": "blue",
+      "color_value": "medium",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "relaxed",
+      "garment_length": "hip",
+      "sleeve_length": "long",
+      "neckline": "polo",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered",
+        "arms_covered",
+        "openwork"
+      ],
+      "style_tags": [
+        "sporty",
+        "minimalist"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "campus",
+        "travel"
+      ],
+      "formality": "casual",
+      "visible_details": "Dusty blue open-weave knit polo-style long sleeve",
+      "visual_confidence": "medium",
+      "uncertainty_notes": "Openwork degree and transparency need original high-res",
+      "group": "tops",
+      "product_name_source_title": "So Me Open Knit Polo Sweater Top",
+      "image_path": "images/GM021.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/so-me-open-knit-polo-sweater-top.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "313919403aad990ec21afefa56c4cddc078563999d2a42c110807cec1e0b5973",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "medium",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM022",
+      "subcategory": "polo_sweater",
+      "primary_color": "white",
+      "secondary_colors": [
+        "blush_pink"
+      ],
+      "color_family": "multicolor",
+      "color_value": "light",
+      "color_chroma": "muted",
+      "color_contrast": "medium",
+      "pattern_tags": [
+        "striped"
+      ],
+      "apparent_silhouette": "relaxed",
+      "garment_length": "hip",
+      "sleeve_length": "short",
+      "neckline": "polo",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered"
+      ],
+      "style_tags": [
+        "sporty",
+        "classic"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "campus",
+        "travel"
+      ],
+      "formality": "casual",
+      "visible_details": "Wide horizontal white and pink striped polo knit",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Apparent relaxed outline not verified as intended fit",
+      "group": "tops",
+      "product_name_source_title": "Mable Oversized Stripe Polo Collar Sweater",
+      "image_path": "images/GM022.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/mable-oversized-stripe-polo-collar-sweater.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "725f205f793c6c00a2ec0d45244b37632060ff4e9d8a9b1459533be05cb64a3a",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM023",
+      "subcategory": "crochet_tank",
+      "primary_color": "olive_green",
+      "secondary_colors": [],
+      "color_family": "green",
+      "color_value": "medium",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "straight",
+      "garment_length": "cropped",
+      "sleeve_length": "sleeveless",
+      "neckline": "v_neck",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_exposed",
+        "sheer_or_openwork",
+        "cropped_hem"
+      ],
+      "style_tags": [
+        "bohemian",
+        "artsy"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "festive_event",
+        "travel"
+      ],
+      "formality": "casual",
+      "visible_details": "Loose green knotted crochet tank with dangling fringe hem",
+      "visual_confidence": "medium",
+      "uncertainty_notes": "Inner black garment is a separate styling layer",
+      "group": "tops",
+      "product_name_source_title": "Fringe Hem Crochet Tank Top",
+      "image_path": "images/GM023.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/fringe-hem-crochet-tank-top.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "8cbb3d18fc4aa7157ed936584a5efcb980712ba4e0939612ecce648a83b24345",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "medium",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM024",
+      "subcategory": "cutout_top",
+      "primary_color": "off_white",
+      "secondary_colors": [],
+      "color_family": "white",
+      "color_value": "light",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "fitted",
+      "garment_length": "waist",
+      "sleeve_length": "long",
+      "neckline": "round_neck",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered",
+        "arms_covered",
+        "chest_cutout"
+      ],
+      "style_tags": [
+        "edgy",
+        "minimalist"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "festive_event"
+      ],
+      "formality": "smart_casual",
+      "visible_details": "Ivory ribbed long-sleeve fitted top with chest cutout",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Fabric composition unavailable",
+      "group": "tops",
+      "product_name_source_title": "Mable Cut Out Long Sleeve Ribbed Knit Top",
+      "image_path": "images/GM024.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/mable-cut-out-long-sleeve-ribbed-knit-top.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "6e485aaca1e227d78a0be2e9545625b64da0eb9c0936478ea961b38bc2aa7190",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM025",
+      "subcategory": "blouse",
+      "primary_color": "off_white",
+      "secondary_colors": [],
+      "color_family": "white",
+      "color_value": "light",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "relaxed",
+      "garment_length": "tunic",
+      "sleeve_length": "long",
+      "neckline": "collared",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered",
+        "arms_covered"
+      ],
+      "style_tags": [
+        "classic",
+        "minimalist"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "work",
+        "campus"
+      ],
+      "formality": "smart_casual",
+      "visible_details": "Oversized-looking white long button-collar blouse with pockets",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Actual intended size fit not verified",
+      "group": "tops",
+      "product_name_source_title": "Plus Size Half Button Collared Neck Long Sleeve Blouse",
+      "image_path": "images/GM025.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/plus-size-half-button-collared-neck-long-sleeve-blouse.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "80b28992348317f635969a1a8ac7cd39d85193e578d5ca183a0c51a59374bcc0",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM026",
+      "subcategory": "peplum_top",
+      "primary_color": "red",
+      "secondary_colors": [
+        "white",
+        "pink"
+      ],
+      "color_family": "red",
+      "color_value": "medium",
+      "color_chroma": "vivid",
+      "color_contrast": "medium",
+      "pattern_tags": [
+        "floral"
+      ],
+      "apparent_silhouette": "peplum",
+      "garment_length": "hip",
+      "sleeve_length": "long",
+      "neckline": "v_neck",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered",
+        "arms_covered"
+      ],
+      "style_tags": [
+        "romantic",
+        "bohemian"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "festive_event"
+      ],
+      "formality": "casual",
+      "visible_details": "Bright red floral waist-gathered peplum blouse",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Small floral details low-res",
+      "group": "tops",
+      "product_name_source_title": "Floral V Neck Balloon Sleeve Peplum Blouse 1",
+      "image_path": "images/GM026.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/floral-v-neck-balloon-sleeve-peplum-blouse-1.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "304d1e1006c05aacd7c52a4cd7c065c49cd81776896588a62f535d8f63a7323d",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM027",
+      "subcategory": "cardigan",
+      "primary_color": "charcoal_grey",
+      "secondary_colors": [
+        "off_white"
+      ],
+      "color_family": "grey",
+      "color_value": "medium",
+      "color_chroma": "muted",
+      "color_contrast": "medium",
+      "pattern_tags": [
+        "striped"
+      ],
+      "apparent_silhouette": "straight",
+      "garment_length": "cropped",
+      "sleeve_length": "long",
+      "neckline": "round_neck",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered",
+        "arms_covered",
+        "cropped_hem"
+      ],
+      "style_tags": [
+        "classic",
+        "minimalist"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "campus",
+        "work"
+      ],
+      "formality": "smart_casual",
+      "visible_details": "Blackish grey-and-white striped cardigan with yellow buttons",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Cardigan should be treated as light layering top",
+      "group": "tops",
+      "product_name_source_title": "Aemi Co Striped Button Down Round Neck Cardigan",
+      "image_path": "images/GM027.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/aemi-co-striped-button-down-round-neck-cardigan.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "dd53a000cb5c3ad68ce860aaefdb98311a396b4d596f377b9f151b5dc880ff77",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM028",
+      "subcategory": "halter_top",
+      "primary_color": "ivory",
+      "secondary_colors": [],
+      "color_family": "white",
+      "color_value": "light",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "fitted",
+      "garment_length": "waist",
+      "sleeve_length": "sleeveless",
+      "neckline": "halter",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_exposed",
+        "chest_cutout"
+      ],
+      "style_tags": [
+        "edgy",
+        "minimalist"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "festive_event"
+      ],
+      "formality": "smart_casual",
+      "visible_details": "Ivory halter cross neck top with small upper chest keyhole",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Hem tucked into jeans; full length unclear",
+      "group": "tops",
+      "product_name_source_title": "And The Why Basic Rib Cross Halter Neck Tank Top",
+      "image_path": "images/GM028.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/and-the-why-basic-rib-cross-halter-neck-tank-top.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "2e637404dbdc687ef06acc23a2a6ab1005086130d3ced9512f598c0ee5a79531",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM029",
+      "subcategory": "peplum_top",
+      "primary_color": "light_pink",
+      "secondary_colors": [
+        "black",
+        "white"
+      ],
+      "color_family": "pink",
+      "color_value": "light",
+      "color_chroma": "muted",
+      "color_contrast": "medium",
+      "pattern_tags": [
+        "novelty_print"
+      ],
+      "apparent_silhouette": "peplum",
+      "garment_length": "hip",
+      "sleeve_length": "long",
+      "neckline": "v_neck",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered",
+        "arms_covered"
+      ],
+      "style_tags": [
+        "romantic",
+        "artsy"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "festive_event"
+      ],
+      "formality": "casual",
+      "visible_details": "Pink printed wrap-style top with small butterfly-like motifs and waist tie",
+      "visual_confidence": "medium",
+      "uncertainty_notes": "Cannot confirm exact print motif at 200px",
+      "group": "tops",
+      "product_name_source_title": "Butterfly V Neck Balloon Sleeve Peplum Blouse",
+      "image_path": "images/GM029.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/butterfly-v-neck-balloon-sleeve-peplum-blouse.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "5005b228ff503ab96ccefe87b048ded87d197965ff7e1902c62b97754bf427aa",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "medium",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM030",
+      "subcategory": "peplum_top",
+      "primary_color": "pastel_pink",
+      "secondary_colors": [],
+      "color_family": "pink",
+      "color_value": "light",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "peplum",
+      "garment_length": "hip",
+      "sleeve_length": "short",
+      "neckline": "sweetheart_neck",
+      "waist_rise": null,
+      "coverage_tags": [
+        "shoulders_covered"
+      ],
+      "style_tags": [
+        "romantic",
+        "classic"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "festive_event"
+      ],
+      "formality": "casual",
+      "visible_details": "Soft pink puff sleeves, sweetheart neckline and gathered peplum",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Fabric unknown",
+      "group": "tops",
+      "product_name_source_title": "Davi Dani Solid Elastic Peplum Puffed Sleeves Blouse",
+      "image_path": "images/GM030.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/davi-dani-solid-elastic-peplum-puffed-sleeves-blouse.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "f4fb8668e100e2641a700091799de2f5448b8241fd5ac080d2872af1745b9915",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM031",
+      "subcategory": "wide_leg_trousers",
+      "primary_color": "cream",
+      "secondary_colors": [],
+      "color_family": "beige",
+      "color_value": "light",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "wide_leg",
+      "garment_length": null,
+      "sleeve_length": null,
+      "neckline": null,
+      "waist_rise": null,
+      "coverage_tags": [
+        "legs_covered"
+      ],
+      "style_tags": [
+        "classic",
+        "minimalist"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "work",
+        "campus"
+      ],
+      "formality": "smart_casual",
+      "visible_details": "Cream flowing wide-leg trousers cropped in framing",
+      "visual_confidence": "low",
+      "uncertainty_notes": "Waist and hem are not visible; high rise is source-title hint only",
+      "group": "bottoms",
+      "product_name_source_title": "And The Why High Rise Wide Leg Linen Blended Pants",
+      "image_path": "images/GM031.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/and-the-why-high-rise-wide-leg-linen-blended-pants.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "c54a3cbc286902be1c75ba519a36b477b9c4d1eff3f0bf55670e52090d2e6b6d",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "high",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM032",
+      "subcategory": "wide_leg_trousers",
+      "primary_color": "slate_grey",
+      "secondary_colors": [],
+      "color_family": "grey",
+      "color_value": "medium",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "wide_leg",
+      "garment_length": "full_length",
+      "sleeve_length": null,
+      "neckline": null,
+      "waist_rise": null,
+      "coverage_tags": [
+        "legs_covered"
+      ],
+      "style_tags": [
+        "minimalist",
+        "classic"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "campus",
+        "travel"
+      ],
+      "formality": "casual",
+      "visible_details": "Grey soft drapey trousers with gathered wide waistband",
+      "visual_confidence": "medium",
+      "uncertainty_notes": "Actual ankle hem/length not fully visible",
+      "group": "bottoms",
+      "product_name_source_title": "Basic Bae Full Size Smocked Wide Waistband Wide Leg Pants",
+      "image_path": "images/GM032.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/basic-bae-full-size-smocked-wide-waistband-wide-leg-pants.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "c1f37c67fee8b736818273eab5c8f449f94770b605d2e91c079a7b60865da3c1",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "medium",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM033",
+      "subcategory": "cargo_trousers",
+      "primary_color": "tan",
+      "secondary_colors": [],
+      "color_family": "brown",
+      "color_value": "light",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "wide_leg",
+      "garment_length": "full_length",
+      "sleeve_length": null,
+      "neckline": null,
+      "waist_rise": "high",
+      "coverage_tags": [
+        "legs_covered"
+      ],
+      "style_tags": [
+        "streetwear",
+        "minimalist"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "campus",
+        "travel"
+      ],
+      "formality": "casual",
+      "visible_details": "Tan high-waisted wide cargo trousers with large leg pockets",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Exact textile and trouser length not provided",
+      "group": "bottoms",
+      "product_name_source_title": "Culture Code Full Size High Waist Wide Leg Cargo Pants",
+      "image_path": "images/GM033.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/culture-code-full-size-high-waist-wide-leg-cargo-pants.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "fe8fdd51ee34c57ca2249dfa259b5ce9cf313b74c7b1de99bfd5e74de4238e83",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM034",
+      "subcategory": "flare_trousers",
+      "primary_color": "black",
+      "secondary_colors": [],
+      "color_family": "black",
+      "color_value": "dark",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "flared",
+      "garment_length": "full_length",
+      "sleeve_length": null,
+      "neckline": null,
+      "waist_rise": "high",
+      "coverage_tags": [
+        "legs_covered"
+      ],
+      "style_tags": [
+        "classic",
+        "edgy"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "work"
+      ],
+      "formality": "smart_casual",
+      "visible_details": "Black rib-textured flared trousers",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Rib texture visible but fiber unknown",
+      "group": "bottoms",
+      "product_name_source_title": "Basic Bae Full Size Ribbed High Waist Flare Pants",
+      "image_path": "images/GM034.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/basic-bae-full-size-ribbed-high-waist-flare-pants.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "da48194f93a97e759258f3f5b0372d823c28f40773b7188953e03340c56baad5",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM035",
+      "subcategory": "palazzo_trousers",
+      "primary_color": "sage_green",
+      "secondary_colors": [],
+      "color_family": "green",
+      "color_value": "light",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "wide_leg",
+      "garment_length": null,
+      "sleeve_length": null,
+      "neckline": null,
+      "waist_rise": null,
+      "coverage_tags": [
+        "legs_covered"
+      ],
+      "style_tags": [
+        "bohemian",
+        "minimalist"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "travel"
+      ],
+      "formality": "casual",
+      "visible_details": "Muted sage textured soft palazzo legs, waist cropped out",
+      "visual_confidence": "low",
+      "uncertainty_notes": "Rise and total garment length not visible",
+      "group": "bottoms",
+      "product_name_source_title": "Washed French Terry Wide Leg Palazzo Pants With Pockets",
+      "image_path": "images/GM035.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/washed-french-terry-wide-leg-palazzo-pants-with-pockets.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "deaae1875d9df218b9df3a5481579978e766f729a9851b69383e5d8066b1cda9",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "high",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM036",
+      "subcategory": "denim_skirt",
+      "primary_color": "charcoal_black",
+      "secondary_colors": [],
+      "color_family": "black",
+      "color_value": "dark",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "straight",
+      "garment_length": "maxi",
+      "sleeve_length": null,
+      "neckline": null,
+      "waist_rise": "high",
+      "coverage_tags": [
+        "legs_covered",
+        "high_slit"
+      ],
+      "style_tags": [
+        "edgy",
+        "classic"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "festive_event"
+      ],
+      "formality": "smart_casual",
+      "visible_details": "Black long denim-look skirt with prominent thigh-high side slit",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Slit makes effective coverage less than full length",
+      "group": "bottoms",
+      "product_name_source_title": "High Rise Slit Denim Skirt",
+      "image_path": "images/GM036.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/high-rise-slit-denim-skirt.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "a8d39be1f2ded32a8afd305cadcdeb792f2a35efba3b9d9ec2dbef948d24c945",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM037",
+      "subcategory": "maxi_skirt",
+      "primary_color": "multicolor",
+      "secondary_colors": [
+        "pink",
+        "orange",
+        "turquoise"
+      ],
+      "color_family": "multicolor",
+      "color_value": "medium",
+      "color_chroma": "vivid",
+      "color_contrast": "high",
+      "pattern_tags": [
+        "geometric"
+      ],
+      "apparent_silhouette": null,
+      "garment_length": null,
+      "sleeve_length": null,
+      "neckline": null,
+      "waist_rise": null,
+      "coverage_tags": [],
+      "style_tags": [
+        "artsy",
+        "bohemian"
+      ],
+      "occasion_tags": [
+        "festive_event",
+        "travel"
+      ],
+      "formality": "casual",
+      "visible_details": "Photo emphasizes a bright patterned outfit; actual skirt is mostly out of frame",
+      "visual_confidence": "low",
+      "uncertainty_notes": "MAIN PRODUCT OCCLUDED: source name indicates skirt, cannot confidently verify shape, coverage or length",
+      "group": "bottoms",
+      "product_name_source_title": "And The Why Asymmetric Geo Printed Tiered Maxi Skirt",
+      "image_path": "images/GM037.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/and-the-why-asymmetric-geo-printed-tiered-maxi-skirt.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "13477ca936d64373c57d389d837b4ec82f2128263917fce4f7f59d7751510baa",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "high",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM038",
+      "subcategory": "midi_skirt",
+      "primary_color": "black",
+      "secondary_colors": [
+        "cream"
+      ],
+      "color_family": "multicolor",
+      "color_value": "medium",
+      "color_chroma": "muted",
+      "color_contrast": "high",
+      "pattern_tags": [
+        "animal_print"
+      ],
+      "apparent_silhouette": "a_line",
+      "garment_length": "midi",
+      "sleeve_length": null,
+      "neckline": null,
+      "waist_rise": null,
+      "coverage_tags": [
+        "knee_length"
+      ],
+      "style_tags": [
+        "edgy",
+        "bohemian"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "festive_event",
+        "travel"
+      ],
+      "formality": "casual",
+      "visible_details": "Black and cream leopard-print flared midi skirt",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Fabric and rise unverified",
+      "group": "bottoms",
+      "product_name_source_title": "Aemi Co Leopard Midi Skirt",
+      "image_path": "images/GM038.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/aemi-co-leopard-midi-skirt.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "cc40e86eb925eb3673633c8d1b310e89c57c9087ee87d965e4d3dd6c2b6fb24d",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM039",
+      "subcategory": "mini_skirt",
+      "primary_color": "dusty_rose",
+      "secondary_colors": [],
+      "color_family": "pink",
+      "color_value": "medium",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "a_line",
+      "garment_length": "mini",
+      "sleeve_length": null,
+      "neckline": null,
+      "waist_rise": "high",
+      "coverage_tags": [
+        "above_knee"
+      ],
+      "style_tags": [
+        "romantic",
+        "classic"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "campus",
+        "festive_event"
+      ],
+      "formality": "casual",
+      "visible_details": "Dusty rose pink mini skirt with front small slit, two pockets",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Material name in title not verified",
+      "group": "bottoms",
+      "product_name_source_title": "Annie Wear Comfort Stretch Cotton Slit Detailed Mini Skirt",
+      "image_path": "images/GM039.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/annie-wear-comfort-stretch-cotton-slit-detailed-mini-skirt.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "2156b5c2700165c8ca67a83a924cb12148be1a1ea1699037c53ac2db4191c8ac",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM040",
+      "subcategory": "denim_skort",
+      "primary_color": "medium_denim_blue",
+      "secondary_colors": [],
+      "color_family": "blue",
+      "color_value": "medium",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "a_line",
+      "garment_length": "mini",
+      "sleeve_length": null,
+      "neckline": null,
+      "waist_rise": null,
+      "coverage_tags": [
+        "above_knee"
+      ],
+      "style_tags": [
+        "streetwear",
+        "classic"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "campus"
+      ],
+      "formality": "casual",
+      "visible_details": "Medium blue denim-look mini skort with cargo pocket flap",
+      "visual_confidence": "medium",
+      "uncertainty_notes": "Inner shorts not visible; skort classification from title",
+      "group": "bottoms",
+      "product_name_source_title": "American Bazi Cargo Pocket Denim Skort",
+      "image_path": "images/GM040.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/american-bazi-cargo-pocket-denim-skort.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "6f9a53f0677cf321e06892807342c55dfa6e5f093b87c3a1cd559e7928f01a41",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "medium",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM041",
+      "subcategory": "maxi_skirt",
+      "primary_color": "cream",
+      "secondary_colors": [],
+      "color_family": "beige",
+      "color_value": "light",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "a_line",
+      "garment_length": "maxi",
+      "sleeve_length": null,
+      "neckline": null,
+      "waist_rise": null,
+      "coverage_tags": [
+        "ankle_length"
+      ],
+      "style_tags": [
+        "bohemian",
+        "romantic"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "travel",
+        "festive_event"
+      ],
+      "formality": "casual",
+      "visible_details": "Light cream long billowy skirt with gathered waist",
+      "visual_confidence": "medium",
+      "uncertainty_notes": "Waistband out of view; material unverified",
+      "group": "bottoms",
+      "product_name_source_title": "Drawstring Waist Crinkle Maxi Skirt",
+      "image_path": "images/GM041.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/drawstring-waist-crinkle-maxi-skirt.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "b96ec8c7914fed33d4be0318be7cdf90889457ac8cfd00466ee8ac1b636fd61a",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "medium",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM042",
+      "subcategory": "denim_shorts",
+      "primary_color": "black_denim",
+      "secondary_colors": [],
+      "color_family": "black",
+      "color_value": "dark",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "relaxed",
+      "garment_length": "mini",
+      "sleeve_length": null,
+      "neckline": null,
+      "waist_rise": null,
+      "coverage_tags": [
+        "above_knee"
+      ],
+      "style_tags": [
+        "streetwear",
+        "edgy"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "travel"
+      ],
+      "formality": "casual",
+      "visible_details": "Dark black denim-like shorts with slight faded/frayed edges",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Waist rise unknown",
+      "group": "bottoms",
+      "product_name_source_title": "Aemi Co Frayed Hem Elastic Waist Denim Shorts",
+      "image_path": "images/GM042.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/aemi-co-frayed-hem-elastic-waist-denim-shorts.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "e2e789fdd4b0642636cf350862b97f604b5e1799e41798ad70e7c49b66d36b6c",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM043",
+      "subcategory": "straight_trousers",
+      "primary_color": "off_white",
+      "secondary_colors": [
+        "pink",
+        "orange",
+        "blue",
+        "purple",
+        "green"
+      ],
+      "color_family": "multicolor",
+      "color_value": "light",
+      "color_chroma": "vivid",
+      "color_contrast": "high",
+      "pattern_tags": [
+        "floral"
+      ],
+      "apparent_silhouette": "straight",
+      "garment_length": "ankle",
+      "sleeve_length": null,
+      "neckline": null,
+      "waist_rise": null,
+      "coverage_tags": [
+        "legs_covered"
+      ],
+      "style_tags": [
+        "artsy",
+        "streetwear"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "travel",
+        "festive_event"
+      ],
+      "formality": "casual",
+      "visible_details": "White trousers with large colorful flower graphics",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Full manufacturer fit unverified",
+      "group": "bottoms",
+      "product_name_source_title": "Flower Print Straight Legs Pants 1",
+      "image_path": "images/GM043.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/flower-print-straight-legs-pants-1.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "20f5ba966e5a0fb118d343e5c07ae348ff45e39648a442c65a5cd3d6f11f851f",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM044",
+      "subcategory": "bootcut_trousers",
+      "primary_color": "steel_blue",
+      "secondary_colors": [],
+      "color_family": "blue",
+      "color_value": "medium",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "flared",
+      "garment_length": "full_length",
+      "sleeve_length": null,
+      "neckline": null,
+      "waist_rise": "high",
+      "coverage_tags": [
+        "legs_covered"
+      ],
+      "style_tags": [
+        "classic",
+        "edgy"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "work",
+        "festive_event"
+      ],
+      "formality": "smart_casual",
+      "visible_details": "Steel blue fitted-thigh bootcut flare trousers with sheen",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Exact textile unknown; apparent shape does not indicate size fit",
+      "group": "bottoms",
+      "product_name_source_title": "Judy Blue Full Size High Waist Tummy Control Faux Leather Bootcut Pants Plus Size",
+      "image_path": "images/GM044.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/judy-blue-full-size-high-waist-tummy-control-faux-leather-bootcut-pants-plus-size.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "ec6a00f18c8b84dc5d6126696b980357e05be77b3192c48d37701e24aca47e2f",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM045",
+      "subcategory": "bell_bottom_trousers",
+      "primary_color": "denim_blue",
+      "secondary_colors": [
+        "charcoal_blue"
+      ],
+      "color_family": "blue",
+      "color_value": "medium",
+      "color_chroma": "muted",
+      "color_contrast": "medium",
+      "pattern_tags": [
+        "checkered"
+      ],
+      "apparent_silhouette": "flared",
+      "garment_length": "full_length",
+      "sleeve_length": null,
+      "neckline": null,
+      "waist_rise": "high",
+      "coverage_tags": [
+        "legs_covered"
+      ],
+      "style_tags": [
+        "artsy",
+        "streetwear"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "campus",
+        "festive_event"
+      ],
+      "formality": "casual",
+      "visible_details": "Blue checkerboard patterned bell-bottom wide flare trouser",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Occasion labels are interpretive",
+      "group": "bottoms",
+      "product_name_source_title": "And The Why Checkerboard High Waist Bell Pants",
+      "image_path": "images/GM045.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/and-the-why-checkerboard-high-waist-bell-pants.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "15be30476fa7e92b5ee847589363d3db534ed90d445e03d6e051e3ddc596a700",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM046",
+      "subcategory": "cargo_joggers",
+      "primary_color": "black",
+      "secondary_colors": [],
+      "color_family": "black",
+      "color_value": "dark",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "tapered",
+      "garment_length": "ankle",
+      "sleeve_length": null,
+      "neckline": null,
+      "waist_rise": "high",
+      "coverage_tags": [
+        "legs_covered"
+      ],
+      "style_tags": [
+        "sporty",
+        "streetwear"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "travel",
+        "campus"
+      ],
+      "formality": "casual",
+      "visible_details": "Black cargo-pocket tapered jogger pants",
+      "visual_confidence": "medium",
+      "uncertainty_notes": "Pocket arrangement partly cut off",
+      "group": "bottoms",
+      "product_name_source_title": "Judy Blue Full Size High Waist Cargo Cuffed Jogger Plus Size",
+      "image_path": "images/GM046.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/judy-blue-full-size-high-waist-cargo-cuffed-jogger-plus-size.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "7c69278ea696486ee666b480db09c76fc463ba3c85acab4c3bde1a43c458fe59",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "medium",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM047",
+      "subcategory": "joggers",
+      "primary_color": "coral_pink",
+      "secondary_colors": [
+        "dark_pink"
+      ],
+      "color_family": "pink",
+      "color_value": "medium",
+      "color_chroma": "vivid",
+      "color_contrast": "medium",
+      "pattern_tags": [
+        "animal_print"
+      ],
+      "apparent_silhouette": "relaxed",
+      "garment_length": "full_length",
+      "sleeve_length": null,
+      "neckline": null,
+      "waist_rise": null,
+      "coverage_tags": [
+        "legs_covered"
+      ],
+      "style_tags": [
+        "bohemian",
+        "artsy"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "travel",
+        "festive_event"
+      ],
+      "formality": "casual",
+      "visible_details": "Pink satin-look leopard pattern loose joggers",
+      "visual_confidence": "medium",
+      "uncertainty_notes": "Fabric designation in title unverified; source picture low-res",
+      "group": "bottoms",
+      "product_name_source_title": "And The Why Satin Leopard Print Joggers",
+      "image_path": "images/GM047.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/and-the-why-satin-leopard-print-joggers.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "97b7fc92172c26c8e4221f9ef482b12eb70b83a3a007e6e80b626c3ffb40527d",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "medium",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM048",
+      "subcategory": "leggings",
+      "primary_color": "black",
+      "secondary_colors": [],
+      "color_family": "black",
+      "color_value": "dark",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "fitted",
+      "garment_length": "ankle",
+      "sleeve_length": null,
+      "neckline": null,
+      "waist_rise": null,
+      "coverage_tags": [
+        "legs_covered"
+      ],
+      "style_tags": [
+        "sporty",
+        "minimalist"
+      ],
+      "occasion_tags": [
+        "sports",
+        "everyday",
+        "travel"
+      ],
+      "formality": "activewear",
+      "visible_details": "Black fitted sports-style leggings",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Sport suitability depends on performance features not visible",
+      "group": "bottoms",
+      "product_name_source_title": "Basic Bae Wide Waistband Sports Leggings",
+      "image_path": "images/GM048.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/basic-bae-wide-waistband-sports-leggings.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "4cc81f0aba3516f2367edd406199f746243f9cd5a840bb07c0fb9d7eaa2ba63a",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM049",
+      "subcategory": "tiered_skirt",
+      "primary_color": "black",
+      "secondary_colors": [],
+      "color_family": "black",
+      "color_value": "dark",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "a_line",
+      "garment_length": "midi",
+      "sleeve_length": null,
+      "neckline": null,
+      "waist_rise": null,
+      "coverage_tags": [
+        "knee_length"
+      ],
+      "style_tags": [
+        "romantic",
+        "bohemian"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "festive_event"
+      ],
+      "formality": "casual",
+      "visible_details": "Black tiered swishy skirt with gathered seam sections",
+      "visual_confidence": "medium",
+      "uncertainty_notes": "Length appears midi but crop/pose make exact hem uncertain",
+      "group": "bottoms",
+      "product_name_source_title": "Elastic Waistband Tiered Midi Skirt 1",
+      "image_path": "images/GM049.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/elastic-waistband-tiered-midi-skirt-1.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "488dd0fa73cf964b8df7e4360d0dfa2e3b14ac15599bdb70537eef8d54501e45",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "medium",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    },
+    {
+      "product_id": "GM050",
+      "subcategory": "shorts",
+      "primary_color": "black",
+      "secondary_colors": [],
+      "color_family": "black",
+      "color_value": "dark",
+      "color_chroma": "muted",
+      "color_contrast": "low",
+      "pattern_tags": [
+        "solid"
+      ],
+      "apparent_silhouette": "relaxed",
+      "garment_length": "mini",
+      "sleeve_length": null,
+      "neckline": null,
+      "waist_rise": "high",
+      "coverage_tags": [
+        "above_knee"
+      ],
+      "style_tags": [
+        "sporty",
+        "minimalist"
+      ],
+      "occasion_tags": [
+        "everyday",
+        "travel",
+        "campus"
+      ],
+      "formality": "casual",
+      "visible_details": "Black loose gathered-waist shorts with pockets",
+      "visual_confidence": "high",
+      "uncertainty_notes": "Rise is based on title and partial waistband appearance",
+      "group": "bottoms",
+      "product_name_source_title": "American Bazi High Waist Paper Bag Shorts",
+      "image_path": "images/GM050.jpg",
+      "image_resolution_px": "200x200",
+      "image_origin": "source_thumbnail_not_highres_original",
+      "source_image_url": "https://raw.githubusercontent.com/arturayupov/womens-fashion-catalog-open-data/0ce98ce4412b0c7b6b76d8fe809c1e78c7e16b5f/thumbnails/american-bazi-high-waist-paper-bag-shorts.jpg",
+      "source_repository": "https://github.com/arturayupov/womens-fashion-catalog-open-data",
+      "source_image_sha256": "16dad44f5bd802139a032063e1f279859a322acfdfcc97cb7e19441b16f52725",
+      "source_rights_status": "third_party_image_rights_unverified",
+      "material_from_verified_source": null,
+      "intended_fit_from_verified_source": null,
+      "size_chart_from_verified_source": null,
+      "annotator": "assistant_visual_first_pass",
+      "review_status": "needs_human_review",
+      "review_priority": "routine",
+      "annotation_schema_version": "working_v0.2",
+      "evidence_policy": "photo_for_visual_attributes__source_title_for_identity_category__style_occasion_interpretive"
+    }
+  ]
+}

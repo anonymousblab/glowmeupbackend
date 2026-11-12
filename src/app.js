@@ -1,11 +1,11 @@
 import { randomUUID } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
 import express from 'express';
 import cors from 'cors';
 import { rateLimit } from 'express-rate-limit';
 import { z } from 'zod';
-import { connectData, glowyData, knowMeData, suitsMeData } from './feature_data.js';
-import { createAiClient } from './ai/client.js';
-import { generateGlowyReply } from './ai/glowy_service.js';
+import { connectData, glowyData, knowMeData, buildSuitsMeData } from './feature_data.js';
+import { DomainError } from './ai/service.js';
 
 import { hashPassword, verifyPassword, newSessionToken, hashToken } from './security.js';
 
@@ -23,21 +23,41 @@ const questionnaireSchema = z.object({
 }).strict();
 const consentSchema = z.object({ accepted: z.literal(true) }).strict();
 const sessionDays = 7;
+const imageSchema = z.object({
+  mimeType: z.enum(['image/jpeg', 'image/png', 'image/webp']),
+  dataBase64: z.string().min(1),
+}).strict();
 const aiMessageSchema = z.object({
   message: z.string().trim().min(1).max(2000),
+  productId: z.string().regex(/^GM\d{3}$/).optional(),
+  image: imageSchema.optional(),
+  imageConsent: z.boolean().optional(),
+}).strict();
+const aiPhotoSchema = z.object({
+  captureType: z.enum(['face', 'body']),
+  consent: z.literal(true),
+  image: imageSchema,
+}).strict();
+const aiConfirmSchema = z.object({
+  proposalId: z.string().uuid(),
+  acceptedFields: z.array(z.enum(['skinDepth', 'apparentShape'])).max(2),
 }).strict();
 
-export function createApp({ database, corsOrigin, openaiApiKey = '', openaiModel = 'gpt-4o-mini', aiEnabled = false }) {
+export function createApp({ database, corsOrigin, ai = null }) {
   const app = express();
-  // AI integration is intentionally disabled for the current MVP preview.
-  // Enable it later with AI_ENABLED=true and OPENAI_API_KEY in Railway.
-  const aiClient = createAiClient({ apiKey: openaiApiKey, enabled: aiEnabled });
   app.disable('x-powered-by');
   // Railway terminates HTTPS in front of the app and forwards the client IP.
   // Trust exactly that first proxy so express-rate-limit can identify clients.
   app.set('trust proxy', 1);
   app.use(cors({ origin: corsOrigin.split(',').map((origin) => origin.trim()) }));
+  // AI routes may carry a base64 photo; everything else stays small.
+  app.use('/api/ai', express.json({ limit: '4mb' }));
   app.use(express.json({ limit: '16kb' }));
+  app.use('/dataset', express.static(fileURLToPath(new URL('../public/dataset', import.meta.url)), {
+    fallthrough: false,
+    immutable: true,
+    maxAge: '7d',
+  }));
 
   const authLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
@@ -105,29 +125,107 @@ export function createApp({ database, corsOrigin, openaiApiKey = '', openaiModel
 
   app.post('/api/ai/chat', async (req, res, next) => {
     const parsed = aiMessageSchema.safeParse(req.body);
-    if (!parsed.success) return res.status(400).json({ error: 'Message must be between 1 and 2000 characters.' });
-    if (!aiEnabled || !aiClient) return res.status(503).json({ error: 'Glowy AI is temporarily disabled.' });
+    if (!parsed.success) return res.status(400).json({ error: 'Invalid chat request.' });
+    if (!ai) return res.status(503).json({ error: 'Glowy AI is temporarily disabled.' });
     try {
       const { rows } = await database.query(
-        'select height_cm, questionnaire from public.app_profiles where user_id = $1',
+        'select questionnaire from public.app_profiles where user_id = $1',
         [req.userId],
       );
-      const profile = rows[0] ?? {};
-      const reply = await generateGlowyReply({
-        client: aiClient,
-        model: openaiModel,
-        profile,
-        message: parsed.data.message,
+      const { message, productId, image, imageConsent } = parsed.data;
+      const result = await ai.chat({
+        userId: req.userId,
+        questionnaire: rows[0]?.questionnaire ?? null,
+        message,
+        productId: productId ?? null,
+        image: image ? { mime_type: image.mimeType, data_base64: image.dataBase64 } : null,
+        imageConsent: imageConsent === true,
       });
-      res.json({ reply });
+      res.json({
+        reply: result.reply.reply,
+        mode: result.reply.mode,
+        referencedProductIds: result.reply.referenced_product_ids,
+        uncertainties: result.reply.uncertainties,
+        followUpQuestion: result.reply.follow_up_question,
+        provider: result.provider,
+      });
     } catch (error) { next(error); }
+  });
+
+  app.post('/api/ai/analyze-photo', async (req, res, next) => {
+    const parsed = aiPhotoSchema.safeParse(req.body);
+    if (!parsed.success) return res.status(400).json({ error: 'Invalid photo analysis request.' });
+    if (!ai) return res.status(503).json({ error: 'Glowy AI is temporarily disabled.' });
+    try {
+      const result = await ai.analyzePhoto({
+        userId: req.userId,
+        captureType: parsed.data.captureType,
+        consent: parsed.data.consent,
+        image: { mime_type: parsed.data.image.mimeType, data_base64: parsed.data.image.dataBase64 },
+      });
+      res.json(result);
+    } catch (error) { next(error); }
+  });
+
+  app.post('/api/ai/vision/confirm', async (req, res, next) => {
+    const parsed = aiConfirmSchema.safeParse(req.body);
+    if (!parsed.success) return res.status(400).json({ error: 'Invalid confirmation request.' });
+    if (!ai) return res.status(503).json({ error: 'Glowy AI is temporarily disabled.' });
+    try {
+      const accepted = ai.confirmVision({
+        userId: req.userId,
+        proposalId: parsed.data.proposalId,
+        acceptedFields: parsed.data.acceptedFields,
+      });
+      await database.query(
+        `update public.app_profiles
+         set questionnaire = coalesce(questionnaire, '{}'::jsonb) || jsonb_build_object('vision', $1::jsonb),
+             updated_at = now()
+         where user_id = $2 and privacy_accepted_at is not null`,
+        [JSON.stringify(accepted), req.userId],
+      );
+      res.json({ vision: accepted });
+    } catch (error) { next(error); }
+  });
+
+  app.get('/api/ai/status', (_req, res) => {
+    res.json(ai ? ai.diagnostics() : { mode: 'offline', selected_provider: 'disabled' });
   });
 
   // Separate read-only MVP contracts for each product feature.
   app.get('/api/know-me', (_req, res) => res.json({ feature: 'know-me', data: knowMeData }));
-  app.get('/api/suits-me', (_req, res) => res.json({ feature: 'suits-me', data: suitsMeData }));
+  app.get('/api/suits-me', async (req, res, next) => {
+    try {
+      const [profileResult, catalogResult] = await Promise.all([
+        database.query(
+          'select questionnaire from public.app_profiles where user_id = $1',
+          [req.userId],
+        ),
+        database.query(`
+          select product_id, product_group, subcategory, product_name,
+                 primary_color, color_family, apparent_silhouette,
+                 garment_length, coverage_tags, style_tags, occasion_tags,
+                 formality, visible_details, visual_confidence, review_status,
+                 annotation_schema_version
+          from public.fashion_products
+          where is_active = true
+          order by product_id
+        `),
+      ]);
+      res.json({
+        feature: 'suits-me',
+        data: buildSuitsMeData(
+          catalogResult.rows,
+          profileResult.rows[0]?.questionnaire ?? {},
+        ),
+      });
+    } catch (error) { next(error); }
+  });
   app.get('/api/connect', (_req, res) => res.json({ feature: 'connect', data: connectData }));
-  app.get('/api/glowy', (_req, res) => res.json({ feature: 'glowy', data: glowyData, aiEnabled }));
+  app.get('/api/glowy', (_req, res) => {
+    const aiEnabled = Boolean(ai?.enabled());
+    res.json({ feature: 'glowy', data: { ...glowyData, aiEnabled }, aiEnabled });
+  });
 
   app.post('/api/auth/sign-out', async (req, res, next) => {
     try {
@@ -195,6 +293,10 @@ export function createApp({ database, corsOrigin, openaiApiKey = '', openaiModel
   });
 
   app.use((error, _req, res, _next) => {
+    if (error instanceof DomainError) {
+      // Engine errors are already sanitized and carry user-facing messages.
+      return res.status(error.status).json({ error: error.message, code: error.code, retryable: error.retryable });
+    }
     console.error(error);
     res.status(500).json({ error: 'Internal server error' });
   });

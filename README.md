@@ -1,47 +1,122 @@
-# GlowMeUp Backend
+# GlowMeUp API
 
-Node.js + Express API for GlowMeUp. Authentication, sessions, consent, and profile data are handled by this API. Supabase is used only as PostgreSQL.
+Node.js and Express backend for the GlowMeUp mobile application. It provides account registration, session management, profile storage, consent handling, feature data, and the Glowy chat endpoint. Supabase is used as managed PostgreSQL storage.
 
-## Railway deployment
+## Requirements
 
-Set these Railway variables:
+- Node.js 20 or newer
+- PostgreSQL database or Supabase project
+- Railway or another Node.js hosting provider for production
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+## Environment configuration
+
+The delivery package includes a configured `.env` so the current environment can be started immediately. Use `.env.example` when creating another environment, and rotate the supplied credentials when project ownership is transferred.
 
 ```text
-DATABASE_URL=your_supabase_postgresql_connection_string
-PG_SSL_REJECT_UNAUTHORIZED=false
-CORS_ORIGIN=https://your-flutter-web-domain
 PORT=3000
-OPENAI_API_KEY=your_openai_api_key
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:5432/postgres
+CORS_ORIGIN=http://localhost:3000
+PG_SSL_REJECT_UNAUTHORIZED=false
+OPENAI_API_KEY=
 OPENAI_MODEL=gpt-4o-mini
 AI_ENABLED=false
 ```
 
-Supabase's pooled PostgreSQL connection can present a certificate chain that
-Node does not trust inside Railway. Keep TLS enabled through `DATABASE_URL`, but
-set `PG_SSL_REJECT_UNAUTHORIZED=false` for this deployment so the pool can
-connect. Do not append Railway's internal port to the public API URL.
+Use the Supabase Session Pooler connection string for Railway. Keep TLS enabled in `DATABASE_URL`; `PG_SSL_REJECT_UNAUTHORIZED=false` is required when the hosted pooler presents a certificate chain that Node does not trust inside Railway.
 
-Deploy command:
+## Database setup
+
+Apply the schema with either method:
+
+```bash
+npm run db:migrate
+npm run db:seed
+```
+
+Or run `supabase/schema.sql` in the Supabase SQL Editor.
+
+The schema creates:
+
+- `public.app_users` for registered accounts
+- `public.app_sessions` for hashed session tokens
+- `public.app_profiles` for consent, measurements, and questionnaire results
+
+This project uses its own backend authentication. Accounts therefore appear in `public.app_users`, not under Supabase Authentication.
+
+## Local development
+
+```bash
+npm run dev
+```
+
+Health check:
 
 ```text
+GET http://localhost:3000/health
+```
+
+## Railway deployment
+
+Set the environment variables listed above in Railway. Railway terminates HTTPS before forwarding traffic to Express, and the application is configured to trust the first proxy hop for accurate rate limiting.
+
+Start command:
+
+```bash
 npm start
 ```
 
-After the first deploy, apply the database schema locally with `npm run db:migrate`, or run the contents of `supabase/schema.sql` in the Supabase SQL Editor.
+Current public API:
 
-## Glowy chat
+```text
+https://glowmeupbackend-production.up.railway.app
+```
 
-Authenticated clients can call `POST /api/ai/chat` with `{ "message": "..." }`. The API sends the message and the saved profile context to OpenAI's Responses API. Keep `OPENAI_API_KEY` only in Railway environment variables; never put it in Flutter or commit it to Git.
+The Railway internal port does not need to be appended to the public URL.
 
-The AI route is intentionally disabled for the current preview. Set `AI_ENABLED=true` only when the OpenAI key is ready. LLM code is isolated under `src/ai/` so it can be enabled later without mixing it into feature routes.
+## Main endpoints
 
-## Feature data endpoints
+```text
+POST /api/auth/sign-up
+POST /api/auth/sign-in
+POST /api/auth/sign-out
+GET  /api/profile
+POST /api/consent
+PUT  /api/profile/body
+PUT  /api/profile/questionnaire
+GET  /api/know-me
+GET  /api/suits-me
+GET  /dataset/images/:productId.jpg
+GET  /api/connect
+GET  /api/glowy
+POST /api/ai/chat
+```
 
-The dummy data is intentionally separated by feature:
+Protected endpoints require an `Authorization: Bearer <token>` header.
 
-- `GET /api/know-me` - body, face, color, and style profile data
-- `GET /api/suits-me` - match score and product recommendations
-- `GET /api/connect` - community tabs and posts
-- `GET /api/glowy` - Glowy prompts and suggestions
+## Fashion catalog
 
-These are authenticated endpoints and currently return MVP seed data from separate backend contracts. They can later be replaced with Supabase queries per feature without changing the Flutter screen contracts.
+`GET /api/suits-me` reads active rows from `public.fashion_products` and ranks them against the saved questionnaire. The Flutter app uses the returned product title, labels, match explanation, and image URL on the Suits Me, product detail, and GlowMatch screens.
+
+The source catalog is stored at `src/data/fashion_dataset.json` and imported with `npm run db:seed`. The seed is idempotent, so rerunning it updates existing products without creating duplicates. Product images are served from `public/dataset/images`. Current labels are a first-pass review and the source images are 200×200 thumbnails. Before a public commercial release, verify image rights, replace low-resolution or ambiguous images, and complete human label review. Price, stock, material, sizing, and guaranteed fit are intentionally not supplied.
+
+## Tests
+
+```bash
+npm test
+npm run smoke
+```
+
+The smoke test creates a temporary account, exercises the profile and session flow, and removes the account when complete.
+
+## Production notes
+
+- Store database credentials and API keys only in hosting environment variables.
+- Set `CORS_ORIGIN` to the deployed web client origin when Flutter web is used.
+- Keep `AI_ENABLED=false` until an OpenAI key and usage policy are ready.
+- Review rate limits and session duration before a public launch.

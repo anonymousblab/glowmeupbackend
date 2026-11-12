@@ -7,16 +7,19 @@
     "dev": "node --watch src/server.js",
     "start": "node src/server.js",
     "db:migrate": "node src/migrate.js",
+    "db:seed": "node src/seed_catalog.js",
     "test": "node --test",
     "smoke": "node scripts/smoke.js"
   },
   "dependencies": {
+    "@google/genai": "^3.2.0",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^4.21.2",
     "express-rate-limit": "^8.7.4",
     "openai": "^7.55.0",
     "pg": "^8.23.1",
+    "sharp": "^0.35.5",
     "zod": "^4.6.7"
   },
   "devDependencies": {

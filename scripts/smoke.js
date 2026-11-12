@@ -35,6 +35,13 @@ try {
     .set('Authorization', `Bearer ${firstToken}`).send(questionnaire);
   assert.equal(quizSaved.status, 200);
 
+  const suitsMe = await request(app).get('/api/suits-me')
+    .set('Authorization', `Bearer ${firstToken}`);
+  assert.equal(suitsMe.status, 200, JSON.stringify(suitsMe.body));
+  assert.equal(suitsMe.body.data.catalog.total, 50);
+  assert.equal(suitsMe.body.data.recommendations.length, 50);
+  assert.match(suitsMe.body.data.recommendations[0].imageUrl, /^\/dataset\/images\/GM\d{3}\.jpg$/);
+
   const signOut = await request(app).post('/api/auth/sign-out')
     .set('Authorization', `Bearer ${firstToken}`);
   assert.equal(signOut.status, 204);
@@ -48,7 +55,7 @@ try {
     .set('Authorization', `Bearer ${signIn.body.token}`);
   assert.equal(profile.body.profile.heightCm, 168);
   assert.deepEqual(profile.body.profile.questionnaire, questionnaire);
-  console.log('Smoke test passed: sign-up, profile, consent, height, sign-out, sign-in.');
+  console.log('Smoke test passed: account, profile, catalog recommendation, and session flow.');
 } finally {
   await database.query('delete from public.app_users where email = $1', [email]);
   await database.end();
