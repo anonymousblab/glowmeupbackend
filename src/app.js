@@ -42,6 +42,21 @@ const aiConfirmSchema = z.object({
   proposalId: z.string().uuid(),
   acceptedFields: z.array(z.enum(['skinDepth', 'apparentShape'])).max(2),
 }).strict();
+const styleTags = ['minimalist', 'classic', 'streetwear', 'romantic', 'sporty', 'edgy', 'bohemian', 'artsy'];
+const quizSchema = z.object({
+  choices: z.array(z.object({
+    tags: z.array(z.enum(styleTags)).min(1).max(3),
+    weight: z.number().min(0).max(3).optional(),
+  })).min(1).max(12),
+}).strict();
+const feedbackSchema = z.object({
+  productId: z.string().regex(/^GM\d{3}$/),
+  action: z.enum(['save', 'not_my_style']),
+}).strict();
+const postChatSchema = z.object({
+  postId: z.string().min(1).max(100),
+  message: z.string().trim().min(1).max(2000),
+}).strict();
 
 export function createApp({
   database,
@@ -145,18 +160,22 @@ export function createApp({
     if (!parsed.success) return res.status(400).json({ error: 'Invalid chat request.' });
     if (!ai) return res.status(503).json({ error: 'Glowy AI is temporarily disabled.' });
     try {
-      const { rows } = await database.query(
-        'select questionnaire from public.app_profiles where user_id = $1',
-        [req.userId],
-      );
+      const [profileRow, feedbackRows] = await Promise.all([
+        database.query('select questionnaire from public.app_profiles where user_id = $1', [req.userId]),
+        database.query('select product_id, action from public.app_feedback where user_id = $1', [req.userId]),
+      ]);
       const { message, productId, image, imageConsent } = parsed.data;
       const result = await ai.chat({
         userId: req.userId,
-        questionnaire: rows[0]?.questionnaire ?? null,
+        questionnaire: profileRow.rows[0]?.questionnaire ?? null,
         message,
         productId: productId ?? null,
         image: image ? { mime_type: image.mimeType, data_base64: image.dataBase64 } : null,
         imageConsent: imageConsent === true,
+        feedback: {
+          saved: feedbackRows.rows.filter((row) => row.action === 'save').map((row) => row.product_id),
+          disliked: feedbackRows.rows.filter((row) => row.action === 'not_my_style').map((row) => row.product_id),
+        },
       });
       res.json({
         reply: result.reply.reply,
@@ -209,11 +228,105 @@ export function createApp({
     res.json(ai ? ai.diagnostics() : { mode: 'offline', selected_provider: 'disabled' });
   });
 
+  app.put('/api/profile/quiz', async (req, res, next) => {
+    const parsed = quizSchema.safeParse(req.body);
+    if (!parsed.success) return res.status(400).json({ error: 'Invalid quiz payload.' });
+    if (!ai) return res.status(503).json({ error: 'Scoring is unavailable right now.' });
+    try {
+      const scored = ai.scoreQuiz(parsed.data.choices);
+      const result = await database.query(
+        `update public.app_profiles
+         set questionnaire = coalesce(questionnaire, '{}'::jsonb) || jsonb_build_object(
+               'styleScores', $1::jsonb,
+               'stylePrimary', $2::text,
+               'styleSecondary', $3::text
+             ),
+             updated_at = now()
+         where user_id = $4 and privacy_accepted_at is not null
+         returning questionnaire`,
+        [JSON.stringify(scored.scores), scored.primary, scored.secondary, req.userId],
+      );
+      if (result.rowCount === 0) return res.status(403).json({ error: 'Privacy consent required' });
+      res.json({ scoring: scored });
+    } catch (error) { next(error); }
+  });
+
+  app.post('/api/feedback', async (req, res, next) => {
+    const parsed = feedbackSchema.safeParse(req.body);
+    if (!parsed.success) return res.status(400).json({ error: 'Invalid feedback payload.' });
+    if (ai) ai.validateFeedback({ product_id: parsed.data.productId, action: parsed.data.action });
+    try {
+      await database.query(
+        `insert into public.app_feedback (user_id, product_id, action)
+         values ($1, $2, $3)
+         on conflict (user_id, product_id)
+         do update set action = excluded.action, created_at = now()`,
+        [req.userId, parsed.data.productId, parsed.data.action],
+      );
+      res.status(204).end();
+    } catch (error) { next(error); }
+  });
+
+  app.delete('/api/feedback/:productId', async (req, res, next) => {
+    if (!/^GM\d{3}$/.test(req.params.productId)) return res.status(400).json({ error: 'Invalid product id.' });
+    try {
+      await database.query(
+        'delete from public.app_feedback where user_id = $1 and product_id = $2',
+        [req.userId, req.params.productId],
+      );
+      res.status(204).end();
+    } catch (error) { next(error); }
+  });
+
+  app.get('/api/feedback', async (req, res, next) => {
+    try {
+      const { rows } = await database.query(
+        'select product_id, action from public.app_feedback where user_id = $1',
+        [req.userId],
+      );
+      res.json({
+        saved: rows.filter((row) => row.action === 'save').map((row) => row.product_id),
+        disliked: rows.filter((row) => row.action === 'not_my_style').map((row) => row.product_id),
+      });
+    } catch (error) { next(error); }
+  });
+
+  app.post('/api/connect/posts/:postId/ask-glowy', async (req, res, next) => {
+    const parsed = postChatSchema.safeParse({ postId: req.params.postId, message: req.body?.message });
+    if (!parsed.success) return res.status(400).json({ error: 'Invalid post chat payload.' });
+    if (!ai) return res.status(503).json({ error: 'Glowy AI is temporarily disabled.' });
+    const post = connectData.posts.find((entry) => entry.id === parsed.data.postId);
+    if (!post) return res.status(404).json({ error: 'Post not found.' });
+    try {
+      const [profileRow, feedbackRows] = await Promise.all([
+        database.query('select questionnaire from public.app_profiles where user_id = $1', [req.userId]),
+        database.query('select product_id, action from public.app_feedback where user_id = $1', [req.userId]),
+      ]);
+      const result = await ai.chat({
+        userId: req.userId,
+        questionnaire: profileRow.rows[0]?.questionnaire ?? null,
+        message: parsed.data.message,
+        post: { post_id: post.id, caption: `${post.title}. ${post.body}`, media_key: post.imageKey },
+        feedback: {
+          saved: feedbackRows.rows.filter((row) => row.action === 'save').map((row) => row.product_id),
+          disliked: feedbackRows.rows.filter((row) => row.action === 'not_my_style').map((row) => row.product_id),
+        },
+      });
+      res.json({
+        reply: result.reply.reply,
+        mode: result.reply.mode,
+        referencedProductIds: result.reply.referenced_product_ids,
+        uncertainties: result.reply.uncertainties,
+        followUpQuestion: result.reply.follow_up_question,
+      });
+    } catch (error) { next(error); }
+  });
+
   // Separate read-only MVP contracts for each product feature.
   app.get('/api/know-me', (_req, res) => res.json({ feature: 'know-me', data: knowMeData }));
   app.get('/api/suits-me', async (req, res, next) => {
     try {
-      const [profileResult, catalogResult] = await Promise.all([
+      const [profileResult, catalogResult, feedbackResult] = await Promise.all([
         database.query(
           'select questionnaire from public.app_profiles where user_id = $1',
           [req.userId],
@@ -228,14 +341,16 @@ export function createApp({
           where is_active = true
           order by product_id
         `),
+        database.query('select product_id, action from public.app_feedback where user_id = $1', [req.userId]),
       ]);
-      res.json({
-        feature: 'suits-me',
-        data: buildSuitsMeData(
-          catalogResult.rows,
-          profileResult.rows[0]?.questionnaire ?? {},
-        ),
-      });
+      const disliked = new Set(feedbackResult.rows.filter((row) => row.action === 'not_my_style').map((row) => row.product_id));
+      const saved = new Set(feedbackResult.rows.filter((row) => row.action === 'save').map((row) => row.product_id));
+      const filtered = catalogResult.rows.filter((row) => !disliked.has(row.product_id));
+      const data = buildSuitsMeData(filtered, profileResult.rows[0]?.questionnaire ?? {});
+      data.recommendations = data.recommendations.map((item) => ({ ...item, saved: saved.has(item.id) }));
+      data.recommendations.sort((a, b) => Number(b.saved) - Number(a.saved) || b.match - a.match);
+      data.feedback = { saved: [...saved], disliked: [...disliked] };
+      res.json({ feature: 'suits-me', data });
     } catch (error) { next(error); }
   });
   app.get('/api/connect', (_req, res) => res.json({ feature: 'connect', data: connectData }));

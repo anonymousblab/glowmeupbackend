@@ -3,7 +3,7 @@ import test from 'node:test';
 import request from 'supertest';
 
 import { createApp } from '../src/app.js';
-import { GlowyAiService, questionnaireToGlowProfile, loadCatalog } from '../src/ai/service.js';
+import { GlowyAiService, questionnaireToGlowProfile, scoreQuiz, loadCatalog } from '../src/ai/service.js';
 import { rankProducts } from '../src/ai/engine/src/recommender.mjs';
 
 const questionnaire = { heightCm: 165, explore: 'Mixed', vibe: 'Minimal', color: 'Neutral', look: 'A' };
@@ -31,6 +31,19 @@ test('chat without a configured provider fails closed with a sanitized error', a
     ai.chat({ userId: 'user-1', questionnaire, message: 'halo' }),
     (error) => error.code === 'AI_NOT_CONFIGURED' && error.status === 503,
   );
+});
+
+test('quiz scoring ranks styles and feeds the profile mapper', () => {
+  const scored = scoreQuiz([
+    { tags: ['minimalist', 'classic'], weight: 1.5 },
+    { tags: ['minimalist'], weight: 1 },
+    { tags: ['streetwear'], weight: 1 },
+  ]);
+  assert.equal(scored.primary, 'minimalist');
+  assert.equal(scored.secondary, 'classic');
+  const profile = questionnaireToGlowProfile({ styleScores: scored.scores });
+  assert.equal(profile.style_profile.primary, 'minimalist');
+  assert.equal(profile.style_profile.secondary, 'classic');
 });
 
 test('ai routes require a session and report status', async () => {

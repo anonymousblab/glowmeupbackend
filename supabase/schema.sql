@@ -68,9 +68,20 @@ create index if not exists fashion_products_formality_idx on public.fashion_prod
 create index if not exists fashion_products_style_tags_idx on public.fashion_products using gin(style_tags);
 create index if not exists fashion_products_occasion_tags_idx on public.fashion_products using gin(occasion_tags);
 
+create table if not exists public.app_feedback (
+  user_id uuid not null references public.app_users(id) on delete cascade,
+  product_id text not null references public.fashion_products(product_id) on delete cascade,
+  action text not null check (action in ('save', 'not_my_style')),
+  created_at timestamptz not null default now(),
+  primary key (user_id, product_id)
+);
+
+create index if not exists app_feedback_user_idx on public.app_feedback(user_id);
+
 alter table public.app_users enable row level security;
 alter table public.app_sessions enable row level security;
 alter table public.app_profiles enable row level security;
 alter table public.fashion_products enable row level security;
+alter table public.app_feedback enable row level security;
 
-revoke all on public.app_users, public.app_sessions, public.app_profiles, public.fashion_products from anon, authenticated;
+revoke all on public.app_users, public.app_sessions, public.app_profiles, public.fashion_products, public.app_feedback from anon, authenticated;
