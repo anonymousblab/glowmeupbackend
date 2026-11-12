@@ -1,10 +1,11 @@
 import OpenAI from 'openai';
 import { DomainError,ensure } from '../src/errors.mjs';
 import { validate } from '../src/contracts.mjs';
-import { openaiConfigured } from './config.mjs';
+import { modelRates, openaiConfigured } from './config.mjs';
 
-// Conservative uncached estimate; documentation checked 2026-11-12. No model fallback.
-export function modelRates(model){return /^gpt-4\.1-mini(?:-2025-04-14)?$/.test(model)?{input:0.40,output:1.60}:null;}
+// Conservative uncached estimate based on Standard pricing:
+// https://developers.openai.com/api/docs/pricing
+export { modelRates };
 export function structuredSchema(schema){
   if(Array.isArray(schema))return schema.map(structuredSchema);
   if(!schema||typeof schema!=='object')return schema;
@@ -26,24 +27,33 @@ export function sanitizedOpenAIError(error){
   return new DomainError('AI_UNAVAILABLE','Layanan OpenAI tidak tersedia. Profil manual dan Suits Me tetap dapat dipakai.',503,true);
 }
 export class OpenAIProvider{
-  kind='openai';#config;#client;#calls=0;#inputTokens=0;#outputTokens=0;#reserved=0;#estimated=0;#active=false;#verified=new Set();#last=null;
-  constructor(config,client=null){this.#config=config;this.#client=client;}
-  diagnostics(){const c=this.#config;return {mode:openaiConfigured(c)?(this.#verified.size?'openai_live_verified':'openai_configured_unverified'):'offline',selected_provider:'openai',model:c.chatModel,chat_model:c.chatModel,vision_model:c.visionModel,model_access_verified:this.#verified.size>0,live_tested:this.#verified.size>0,calls_this_run:this.#calls,call_cap:c.maxCalls,input_tokens:this.#inputTokens,output_tokens:this.#outputTokens,estimated_cost_usd:this.#estimated,reserved_cost_usd:this.#reserved,budget_usd:c.budgetUsd,verified_models:[...this.#verified]};}
+  kind='openai';#config;#client;#clock;#calls=0;#callWindowStartedAt;#inputTokens=0;#outputTokens=0;#reserved=0;#estimated=0;#active=false;#verified=new Set();#last=null;
+  constructor(config,client=null,clock=()=>Date.now()){this.#config=config;this.#client=client;this.#clock=clock;this.#callWindowStartedAt=clock();}
+  #refreshCallWindow(){const now=this.#clock();if(now-this.#callWindowStartedAt>=this.#config.callWindowMs){this.#calls=0;this.#callWindowStartedAt=now;}}
+  diagnostics(){const c=this.#config;return {mode:openaiConfigured(c)?(this.#verified.size?'openai_live_verified':'openai_configured_unverified'):'offline',selected_provider:'openai',model:c.chatModel,chat_model:c.chatModel,vision_model:c.visionModel,model_access_verified:this.#verified.size>0,live_tested:this.#verified.size>0,calls_this_run:this.#calls,calls_in_window:this.#calls,call_cap:c.maxCalls,call_window_ms:c.callWindowMs,input_tokens:this.#inputTokens,output_tokens:this.#outputTokens,estimated_cost_usd:this.#estimated,reserved_cost_usd:this.#reserved,budget_usd:c.budgetUsd,verified_models:[...this.#verified]};}
   lastEvidence(){return this.#last?structuredClone(this.#last):null;}
   async generate({instructions,context,schema,image=null,task='chat',signal=null}){
     const c=this.#config;
     ensure(openaiConfigured(c),'AI_NOT_CONFIGURED','OpenAI belum aktif atau key baru belum dikonfirmasi. Gunakan profil manual dan Suits Me.',503);
     ensure(!signal?.aborted,'AI_CANCELLED','Request dibatalkan sebelum dikirim.',499);
     ensure(!this.#active,'AI_BUSY','Tunggu request AI sebelumnya selesai.',429);
-    ensure(this.#calls<c.maxCalls,'AI_CALL_CAP','Batas panggilan OpenAI proses ini tercapai.',429);
+    this.#refreshCallWindow();
+    if(this.#calls>=c.maxCalls){
+      console.warn('[glowmeup-ai] request window exhausted',{model:c.chatModel,maxCalls:c.maxCalls,callWindowMs:c.callWindowMs});
+      throw new DomainError('AI_CALL_CAP','Batas panggilan AI pada jendela waktu ini tercapai.',429,true);
+    }
     const model=(task==='vision'||image)?c.visionModel:c.chatModel,rates=modelRates(model);
-    ensure(rates,'AI_PRICING_UNVERIFIED','Tarif model ini belum diaudit untuk batas US$0.50. Jangan mengganti model tanpa review.',503);
+    ensure(rates,'AI_PRICING_UNVERIFIED','Tarif model ini belum diverifikasi. Pilih model yang didukung atau audit tarifnya terlebih dahulu.',503);
     const contextText=JSON.stringify(context);ensure(Buffer.byteLength(contextText)<=40000,'CONTEXT_TOO_LARGE','Konteks terlalu panjang.');
     const format=structuredSchema(schema);
     // UTF-8 bytes overestimate text tokens. Image reserve exceeds the configured 1024px input budget.
     const inputReserve=Buffer.byteLength(JSON.stringify({instructions,context,schema:format}))+4096+(image?16000:0);
     const reservation=(inputReserve*rates.input+c.maxOutputTokens*rates.output)/1000000;
-    ensure(this.#reserved+reservation<=c.budgetUsd,'AI_BUDGET_CAP','Batas estimasi budget OpenAI proses ini tercapai.',429);
+    ensure(Number.isFinite(reservation),'INVALID_CONFIG','Estimasi biaya request tidak valid.',500);
+    if(this.#reserved+reservation>c.budgetUsd){
+      console.warn('[glowmeup-ai] process budget exhausted',{model,budgetUsd:c.budgetUsd,reservedUsd:this.#reserved,requestReserveUsd:reservation});
+      throw new DomainError('AI_BUDGET_CAP','Batas estimasi budget AI untuk proses ini tercapai.',429);
+    }
     this.#client??=new OpenAI({apiKey:c.key,baseURL:'https://api.openai.com/v1',logLevel:'off',maxRetries:0,timeout:c.timeoutMs});
     this.#active=true;this.#calls++;this.#reserved+=reservation;
     const controller=new AbortController(),abort=()=>controller.abort();signal?.addEventListener('abort',abort,{once:true});
@@ -51,7 +61,7 @@ export class OpenAIProvider{
     try{
       const content=[{type:'input_text',text:contextText}];
       if(image)content.push({type:'input_image',image_url:`data:${image.mimeType};base64,${image.data}`,detail:'low'});
-      const pending=this.#client.responses.create({model,instructions,input:[{role:'user',content}],text:{format:{type:'json_schema',name:task==='vision'?'know_me_vision':'glowy_response',strict:true,schema:format}},store:false,max_output_tokens:c.maxOutputTokens},{maxRetries:0,timeout:c.timeoutMs,signal:controller.signal}).withResponse();
+      const pending=this.#client.responses.create({model,instructions,input:[{role:'user',content}],text:{format:{type:'json_schema',name:task==='vision'?'know_me_vision':'glowy_response',strict:true,schema:format}},store:false,max_output_tokens:c.maxOutputTokens,...(rates.reasoningEffort?{reasoning:{effort:rates.reasoningEffort}}:{})},{maxRetries:0,timeout:c.timeoutMs,signal:controller.signal}).withResponse();
       const {data,response,request_id}=await Promise.race([pending,new Promise((_,reject)=>{timer=setTimeout(()=>{controller.abort();reject(new DomainError('AI_TIMEOUT','OpenAI terlalu lama merespons.',504,true));},c.timeoutMs);})]);
       const input=Number(data.usage?.input_tokens)||0,output=Number(data.usage?.output_tokens)||0,estimate=(input*rates.input+output*rates.output)/1000000;
       this.#inputTokens+=input;this.#outputTokens+=output;this.#estimated+=estimate;
@@ -62,7 +72,7 @@ export class OpenAIProvider{
       ensure(typeof text==='string'&&text.trim().length>0&&text.length<=20000,'INVALID_AI_RESPONSE','Jawaban OpenAI kosong atau terlalu panjang.',502);
       let result;try{result=JSON.parse(text);validate(schema,result);}catch{throw new DomainError('INVALID_AI_RESPONSE','Jawaban OpenAI tidak sesuai kontrak JSON.',502);}
       this.#verified.add(model);this.#last.status='PASS';return result;
-    }catch(error){const safe=sanitizedOpenAIError(error),networkCode=error?.cause?.code;this.#last={...this.#last,status:'FAILED',error_code:safe.code,http_status:this.#last.http_status??(Number(error?.status)||null),network_failure_code:['EACCES','ENOTFOUND','ECONNREFUSED','ECONNRESET','ETIMEDOUT'].includes(networkCode)?networkCode:null};throw safe;}
+    }catch(error){const safe=sanitizedOpenAIError(error),networkCode=error?.cause?.code;this.#last={...this.#last,status:'FAILED',error_code:safe.code,http_status:this.#last.http_status??(Number(error?.status)||null),network_failure_code:['EACCES','ENOTFOUND','ECONNREFUSED','ECONNRESET','ETIMEDOUT'].includes(networkCode)?networkCode:null};console.warn('[glowmeup-ai] OpenAI request failed',{code:safe.code,httpStatus:this.#last.http_status,model,networkFailureCode:this.#last.network_failure_code});throw safe;}
     finally{clearTimeout(timer);signal?.removeEventListener('abort',abort);this.#active=false;}
   }
 }

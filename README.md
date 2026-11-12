@@ -16,16 +16,22 @@ npm install
 
 ## Environment configuration
 
-The delivery package includes a configured `.env` so the current environment can be started immediately. Use `.env.example` when creating another environment, and rotate the supplied credentials when project ownership is transferred.
+For local development, create `.env` from `.env.example` and enter credentials locally; `.env` is ignored by Git. For Railway, configure secrets and settings in the service's Variables panel instead of committing an `.env` file.
 
 ```text
 PORT=3000
 DATABASE_URL=postgresql://USER:PASSWORD@HOST:5432/postgres
 CORS_ORIGIN=http://localhost:3000
 PG_SSL_REJECT_UNAUTHORIZED=false
+AI_PROVIDER=openai
 OPENAI_API_KEY=
-OPENAI_MODEL=gpt-4o-mini
-AI_ENABLED=false
+OPENAI_CHAT_MODEL=gpt-6-luna
+OPENAI_VISION_MODEL=gpt-6.1-terra
+OPENAI_KEY_ROTATED_CONFIRMED=false
+OPENAI_ENABLE_LIVE=false
+OPENAI_BUDGET_USD=0.50
+OPENAI_MAX_CALLS_PER_WINDOW=20
+OPENAI_CALL_WINDOW_MS=3600000
 ```
 
 Use the Supabase Session Pooler connection string for Railway. Keep TLS enabled in `DATABASE_URL`; `PG_SSL_REJECT_UNAUTHORIZED=false` is required when the hosted pooler presents a certificate chain that Node does not trust inside Railway.
@@ -118,5 +124,10 @@ The smoke test creates a temporary account, exercises the profile and session fl
 
 - Store database credentials and API keys only in hosting environment variables.
 - Set `CORS_ORIGIN` to the deployed web client origin when Flutter web is used.
-- Keep `AI_ENABLED=false` until an OpenAI key and usage policy are ready.
+- Keep `OPENAI_ENABLE_LIVE=false` and `OPENAI_KEY_ROTATED_CONFIRMED=false` until a rotated OpenAI key and usage policy are ready. Set both to `true` in the hosting environment only after verification.
+- For live OpenAI, verify `AI_PROVIDER=openai`, `OPENAI_API_KEY`, `OPENAI_CHAT_MODEL=gpt-6-luna`, `OPENAI_VISION_MODEL=gpt-6.1-terra`, and both enable/rotation flags above. Missing optional AI values leave Glowy offline; they do not prevent the Express API from starting.
+- `OPENAI_BUDGET_USD` accepts any finite positive amount. It is an estimated, cumulative in-memory budget per Node.js process—not an OpenAI billing cap—and resets on process restart. Multiple Railway replicas each maintain separate counters. Use OpenAI project spending limits for account-level protection; a persistent cross-replica ledger requires shared storage and atomic reservations.
+- `OPENAI_MAX_CALLS_PER_WINDOW` and `OPENAI_CALL_WINDOW_MS` limit request volume independently of spending. The previous `OPENAI_MAX_CALLS_PER_RUN` name remains accepted for existing deployments.
+- OpenAI cost estimates use Standard uncached pricing: GPT-6 Luna ($0.10 / $0.50) for chat and GPT-6.1 Terra ($1.00 / $5.00) for image input, per million input/output tokens. Image usage is conservatively estimated; actual billing is controlled by OpenAI.
+- GPT-4.1 mini remains supported as an explicit model option, but OpenAI marks it deprecated; the default is now GPT-6 Luna/Terra.
 - Review rate limits and session duration before a public launch.

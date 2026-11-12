@@ -22,14 +22,16 @@ function jsonSchema(schema) {
 }
 export class GeminiProvider {
   kind='gemini';
-  #config;#client;#calls=0;#inputTokens=0;#outputTokens=0;#active=false;
+  #config;#client;#calls=0;#callWindowStartedAt=Date.now();#inputTokens=0;#outputTokens=0;#active=false;
   constructor(config,client=null){this.#config=config;this.#client=client;}
-  diagnostics(){return {mode:providerConfigured(this.#config)?'gemini_configured_unverified':'offline',model:this.#config.model||null,model_access_verified:false,live_tested:false,calls_this_run:this.#calls,call_cap:this.#config.maxCalls,input_tokens:this.#inputTokens,output_tokens:this.#outputTokens};}
+  #refreshCallWindow(){const now=Date.now();if(now-this.#callWindowStartedAt>=this.#config.callWindowMs){this.#calls=0;this.#callWindowStartedAt=now;}}
+  diagnostics(){return {mode:providerConfigured(this.#config)?'gemini_configured_unverified':'offline',model:this.#config.model||null,model_access_verified:false,live_tested:false,calls_this_run:this.#calls,calls_in_window:this.#calls,call_cap:this.#config.maxCalls,call_window_ms:this.#config.callWindowMs,input_tokens:this.#inputTokens,output_tokens:this.#outputTokens};}
   async generate({instructions,context,schema,image=null,signal=null}) {
     ensure(providerConfigured(this.#config),'AI_NOT_CONFIGURED','Gemini belum diaktifkan. Gunakan Know Me manual dan Suits Me offline.',503);
     ensure(!signal?.aborted,'AI_CANCELLED','Request dibatalkan sebelum dikirim.',499);
     ensure(!this.#active,'AI_BUSY','Tunggu request sebelumnya selesai.',429);
-    ensure(this.#calls<this.#config.maxCalls,'AI_CALL_CAP','Batas panggilan Gemini sesi ini tercapai.',429);
+    this.#refreshCallWindow();
+    ensure(this.#calls<this.#config.maxCalls,'AI_CALL_CAP','Batas panggilan Gemini pada jendela waktu ini tercapai.',429,true);
     const text=JSON.stringify(context);ensure(Buffer.byteLength(text)<40000,'CONTEXT_TOO_LARGE','Konteks terlalu panjang.');
     this.#client??=new GoogleGenAI({apiKey:this.#config.key,httpOptions:{timeout:this.#config.timeoutMs,retryOptions:{attempts:1}}});
     this.#active=true;this.#calls++;

@@ -91,18 +91,6 @@ export class GlowyAiService {
     return this.#provider.diagnostics();
   }
 
-  // The engine's per-run call/budget caps were designed for short local runs.
-  // On a long-lived server a fresh provider starts a new run with a new budget.
-  async #generate(args) {
-    try {
-      return await this.#provider.generate(args);
-    } catch (error) {
-      if (!['AI_CALL_CAP', 'AI_BUDGET_CAP'].includes(error?.code)) throw error;
-      this.#provider = createProvider(this.#config);
-      return this.#provider.generate(args);
-    }
-  }
-
   async chat({ userId, questionnaire = null, message, productId = null, image = null, imageConsent = false }) {
     const profile = questionnaireToGlowProfile(questionnaire);
     let attachment = null;
@@ -135,7 +123,7 @@ export class GlowyAiService {
       context.image_attachment.data_kind = 'request_scoped_image_input';
       context.external_image_notice = 'Image is user-provided, not a verified catalog record. Do not assign a GM ID from visual similarity.';
     }
-    const raw = await this.#generate({
+    const raw = await this.#provider.generate({
       task: 'chat',
       instructions: glowyInstructions,
       context,
@@ -168,7 +156,7 @@ export class GlowyAiService {
     ensure(consent === true, 'CONSENT_REQUIRED', 'Persetujuan analisis foto diperlukan.');
     const attachment = await decodeImage(image, this.#config.maxImageBytes);
     try {
-      const raw = await this.#generate({
+      const raw = await this.#provider.generate({
         task: 'vision',
         instructions: visionInstructions,
         context: { capture_type: captureType, consent_verified: true },
