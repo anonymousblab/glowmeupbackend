@@ -30,8 +30,26 @@ OPENAI_VISION_MODEL=gpt-6.1-terra
 OPENAI_KEY_ROTATED_CONFIRMED=false
 OPENAI_ENABLE_LIVE=false
 OPENAI_BUDGET_USD=0.50
-OPENAI_MAX_CALLS_PER_WINDOW=20
+OPENAI_MAX_CALLS_PER_WINDOW=100
+OPENAI_MAX_CALLS_PER_USER_PER_WINDOW=20
 OPENAI_CALL_WINDOW_MS=3600000
+OPENAI_MAX_CONCURRENT_REQUESTS=3
+OPENAI_MAX_QUEUE_SIZE=10
+OPENAI_QUEUE_TIMEOUT_MS=30000
+OPENAI_MAX_RETRIES=1
+OPENAI_MAX_OUTPUT_TOKENS=1200
+OPENAI_TIMEOUT_MS=25000
+GEMINI_API_KEY=
+GEMINI_MODEL=
+GEMINI_ENABLE_LIVE=false
+GEMINI_MODEL_ACCESS_CONFIRMED=false
+GEMINI_FREE_TIER_CONFIRMED=false
+GEMINI_MAX_CALLS_PER_WINDOW=10
+GEMINI_CALL_WINDOW_MS=3600000
+GEMINI_TIMEOUT_MS=20000
+GLOWY_LOCAL_TOKEN=
+GLOWY_PORT=8765
+GLOWY_MAX_IMAGE_BYTES=2097152
 ```
 
 Use the Supabase Session Pooler connection string for Railway. Keep TLS enabled in `DATABASE_URL`; `PG_SSL_REJECT_UNAUTHORIZED=false` is required when the hosted pooler presents a certificate chain that Node does not trust inside Railway.
@@ -127,7 +145,8 @@ The smoke test creates a temporary account, exercises the profile and session fl
 - Keep `OPENAI_ENABLE_LIVE=false` and `OPENAI_KEY_ROTATED_CONFIRMED=false` until a rotated OpenAI key and usage policy are ready. Set both to `true` in the hosting environment only after verification.
 - For live OpenAI, verify `AI_PROVIDER=openai`, `OPENAI_API_KEY`, `OPENAI_CHAT_MODEL=gpt-6-luna`, `OPENAI_VISION_MODEL=gpt-6.1-terra`, and both enable/rotation flags above. Missing optional AI values leave Glowy offline; they do not prevent the Express API from starting.
 - `OPENAI_BUDGET_USD` accepts any finite positive amount. It is an estimated, cumulative in-memory budget per Node.js process—not an OpenAI billing cap—and resets on process restart. Multiple Railway replicas each maintain separate counters. Use OpenAI project spending limits for account-level protection; a persistent cross-replica ledger requires shared storage and atomic reservations.
-- `OPENAI_MAX_CALLS_PER_WINDOW` and `OPENAI_CALL_WINDOW_MS` limit request volume independently of spending. The previous `OPENAI_MAX_CALLS_PER_RUN` name remains accepted for existing deployments.
+- `OPENAI_MAX_CALLS_PER_WINDOW` and `OPENAI_CALL_WINDOW_MS` limit process-wide request volume; the per-user `OPENAI_MAX_CALLS_PER_USER_PER_WINDOW` limit is enforced after authentication. Old `OPENAI_MAX_CALLS_PER_RUN` is still accepted as an alias.
+- `OPENAI_MAX_CONCURRENT_REQUESTS`, `OPENAI_MAX_QUEUE_SIZE`, and `OPENAI_QUEUE_TIMEOUT_MS` bound the in-process queue. `OPENAI_MAX_RETRIES` is bounded (0–2); quota/budget errors are never retried. The queue and per-user rate-limit store are process-local, so each Railway replica has separate limits.
 - OpenAI cost estimates use Standard uncached pricing: GPT-6 Luna ($0.10 / $0.50) for chat and GPT-6.1 Terra ($1.00 / $5.00) for image input, per million input/output tokens. Image usage is conservatively estimated; actual billing is controlled by OpenAI.
 - GPT-4.1 mini remains supported as an explicit model option, but OpenAI marks it deprecated; the default is now GPT-6 Luna/Terra.
 - Review rate limits and session duration before a public launch.

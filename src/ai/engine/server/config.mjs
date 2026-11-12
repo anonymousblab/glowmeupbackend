@@ -13,7 +13,7 @@ export function configuration(env = process.env) {
   const number = (key, fallback, min, max) => {
     const value = Number(env[key] ?? fallback);
     ensure(
-      Number.isInteger(value) && value >= min && value <= max,
+      Number.isSafeInteger(value) && value >= min && value <= max,
       "INVALID_CONFIG",
       `${key} tidak valid.`,
     );
@@ -76,8 +76,18 @@ export function configuration(env = process.env) {
       live: env.OPENAI_ENABLE_LIVE === "true",
       rotatedKeyConfirmed: env.OPENAI_KEY_ROTATED_CONFIRMED === "true",
       budgetUsd,
-      maxCalls: number(openaiCallLimitKey, 8, 1, 20),
+      maxCalls: number(openaiCallLimitKey, 100, 1, Number.MAX_SAFE_INTEGER),
       callWindowMs: number("OPENAI_CALL_WINDOW_MS", 3600000, 60000, 86400000),
+      maxCallsPerUserPerWindow: number(
+        "OPENAI_MAX_CALLS_PER_USER_PER_WINDOW",
+        20,
+        1,
+        Number.MAX_SAFE_INTEGER,
+      ),
+      maxConcurrentRequests: number("OPENAI_MAX_CONCURRENT_REQUESTS", 3, 1, 100),
+      maxQueueSize: number("OPENAI_MAX_QUEUE_SIZE", 10, 0, 1000),
+      queueTimeoutMs: number("OPENAI_QUEUE_TIMEOUT_MS", 30000, 1000, 300000),
+      maxRetries: number("OPENAI_MAX_RETRIES", 1, 0, 2),
       timeoutMs: number("OPENAI_TIMEOUT_MS", 25000, 100, 60000),
       maxOutputTokens: number("OPENAI_MAX_OUTPUT_TOKENS", 1200, 128, 2048),
     },

@@ -74,6 +74,18 @@ test('OpenAI key confirmation follows explicit true/false environment values', (
   }).openai), true);
 });
 
+test('missing API key leaves live OpenAI unavailable without making a request', async () => {
+  const provider = new OpenAIProvider(configuration({
+    OPENAI_ENABLE_LIVE: 'true',
+    OPENAI_KEY_ROTATED_CONFIRMED: 'true',
+  }).openai);
+  await assert.rejects(
+    () => provider.generate(request),
+    (error) => error.code === 'AI_NOT_CONFIGURED' && error.status === 503,
+  );
+  assert.equal(provider.diagnostics().calls_in_window, 0);
+});
+
 test('only audited OpenAI model identifiers have configured pricing', () => {
   const defaults = configuration({}).openai;
   assert.equal(defaults.chatModel, 'gpt-6-luna');
@@ -116,7 +128,7 @@ test('embedded provider preserves audited source model selection and reasoning s
   assert.ok(bodies.every((body) => body.reasoning.effort === 'none'));
 });
 
-test('budget exhaustion persists across call-window rollover without another API call', async () => {
+test('successful usage reconciles its reservation and budget persists across window rollover', async () => {
   let now = 1000;
   const { client, calls } = mockClient();
   const provider = new OpenAIProvider(openaiConfig({
@@ -127,25 +139,43 @@ test('budget exhaustion persists across call-window rollover without another API
 
   assert.equal(openaiConfigured(openaiConfig()), true);
   assert.deepEqual(await provider.generate(request), { ok: true });
-  const reservedAfterFirstCall = provider.diagnostics().reserved_cost_usd;
+  assert.equal(provider.diagnostics().reserved_cost_usd, 0);
+  assert.equal(provider.diagnostics().estimated_cost_usd, 0.000006);
   await assert.rejects(
     () => provider.generate(request),
     (error) => error.code === 'AI_CALL_CAP' && error.retryable === true,
   );
 
   now += 60000;
-  await assert.rejects(
-    () => provider.generate(request),
-    (error) => error.code === 'AI_BUDGET_CAP' && error.status === 429,
-  );
-  assert.equal(calls.length, 1);
-  assert.equal(provider.diagnostics().reserved_cost_usd, reservedAfterFirstCall);
-  assert.equal(provider.diagnostics().calls_in_window, 0);
+  assert.deepEqual(await provider.generate(request), { ok: true });
+  assert.equal(calls.length, 2);
+  assert.equal(provider.diagnostics().reserved_cost_usd, 0);
+  assert.equal(provider.diagnostics().calls_in_window, 1);
+  assert.equal(provider.diagnostics().estimated_cost_usd, 0.000012);
 });
 
-test('OpenAI quota exhaustion and rate limiting remain distinct with SDK retries disabled', async () => {
+test('call limits above 20 and per-user limits are configurable', () => {
+  const { openai } = configuration({
+    OPENAI_MAX_CALLS_PER_WINDOW: '100',
+    OPENAI_MAX_CALLS_PER_USER_PER_WINDOW: '50',
+  });
+  assert.equal(openai.maxCalls, 100);
+  assert.equal(openai.maxCallsPerUserPerWindow, 50);
+  assert.equal(openai.maxConcurrentRequests, 3);
+  assert.equal(openai.maxQueueSize, 10);
+  assert.throws(
+    () => configuration({ OPENAI_MAX_CONCURRENT_REQUESTS: '0' }),
+    (error) => error.code === 'INVALID_CONFIG',
+  );
+});
+
+test('OpenAI quota exhaustion and rate limiting remain distinct and quota is never retried', async () => {
   assert.equal(sanitizedOpenAIError({ status: 429, code: 'insufficient_quota' }).code, 'AI_QUOTA_EXHAUSTED');
+  assert.equal(sanitizedOpenAIError({ status: 429, code: 'billing_hard_limit_reached' }).code, 'AI_QUOTA_EXHAUSTED');
   assert.equal(sanitizedOpenAIError({ status: 429, code: 'rate_limit_exceeded' }).code, 'AI_RATE_LIMITED');
+  assert.equal(sanitizedOpenAIError({ status: 401 }).code, 'AI_AUTH_FAILED');
+  assert.equal(sanitizedOpenAIError({ status: 404 }).code, 'AI_MODEL_UNAVAILABLE');
+  assert.equal(sanitizedOpenAIError({ status: 503 }).code, 'AI_UNAVAILABLE');
 
   const { client, calls } = mockClient(async () => {
     throw { status: 429, code: 'insufficient_quota' };
@@ -157,4 +187,14 @@ test('OpenAI quota exhaustion and rate limiting remain distinct with SDK retries
   );
   assert.equal(calls.length, 1);
   assert.equal(calls[0].options.maxRetries, 0);
+
+  const { client: billingClient, calls: billingCalls } = mockClient(async () => {
+    throw { status: 429, code: 'billing_hard_limit_reached' };
+  });
+  const billingProvider = new OpenAIProvider(openaiConfig({ OPENAI_MAX_RETRIES: '1' }), billingClient);
+  await assert.rejects(
+    () => billingProvider.generate(request),
+    (error) => error.code === 'AI_QUOTA_EXHAUSTED' && error.retryable === false,
+  );
+  assert.equal(billingCalls.length, 1);
 });

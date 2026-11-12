@@ -91,6 +91,13 @@ export class GlowyAiService {
     return this.#provider.diagnostics();
   }
 
+  requestLimits() {
+    return {
+      maxCallsPerUserPerWindow: this.#config.openai.maxCallsPerUserPerWindow,
+      windowMs: this.#config.openai.callWindowMs,
+    };
+  }
+
   async chat({ userId, questionnaire = null, message, productId = null, image = null, imageConsent = false }) {
     const profile = questionnaireToGlowProfile(questionnaire);
     let attachment = null;

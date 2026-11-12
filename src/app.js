@@ -43,7 +43,12 @@ const aiConfirmSchema = z.object({
   acceptedFields: z.array(z.enum(['skinDepth', 'apparentShape'])).max(2),
 }).strict();
 
-export function createApp({ database, corsOrigin, ai = null }) {
+export function createApp({
+  database,
+  corsOrigin,
+  ai = null,
+  aiRequestLimit = { maxCallsPerUserPerWindow: 20, windowMs: 3600000 },
+}) {
   const app = express();
   app.disable('x-powered-by');
   // Railway terminates HTTPS in front of the app and forwards the client IP.
@@ -65,6 +70,18 @@ export function createApp({ database, corsOrigin, ai = null }) {
     standardHeaders: 'draft-8',
     legacyHeaders: false,
     message: { error: 'Too many attempts. Please try again later.' },
+  });
+  const aiUserLimiter = rateLimit({
+    windowMs: aiRequestLimit.windowMs,
+    limit: aiRequestLimit.maxCallsPerUserPerWindow,
+    keyGenerator: (req) => req.userId,
+    standardHeaders: 'draft-8',
+    legacyHeaders: false,
+    message: {
+      error: 'AI request limit reached. Please try again later.',
+      code: 'AI_USER_RATE_LIMIT',
+      retryable: true,
+    },
   });
 
   app.get('/health', (_req, res) => res.json({ status: 'ok' }));
@@ -123,7 +140,7 @@ export function createApp({ database, corsOrigin, ai = null }) {
     } catch (error) { next(error); }
   });
 
-  app.post('/api/ai/chat', async (req, res, next) => {
+  app.post('/api/ai/chat', aiUserLimiter, async (req, res, next) => {
     const parsed = aiMessageSchema.safeParse(req.body);
     if (!parsed.success) return res.status(400).json({ error: 'Invalid chat request.' });
     if (!ai) return res.status(503).json({ error: 'Glowy AI is temporarily disabled.' });
@@ -152,7 +169,7 @@ export function createApp({ database, corsOrigin, ai = null }) {
     } catch (error) { next(error); }
   });
 
-  app.post('/api/ai/analyze-photo', async (req, res, next) => {
+  app.post('/api/ai/analyze-photo', aiUserLimiter, async (req, res, next) => {
     const parsed = aiPhotoSchema.safeParse(req.body);
     if (!parsed.success) return res.status(400).json({ error: 'Invalid photo analysis request.' });
     if (!ai) return res.status(503).json({ error: 'Glowy AI is temporarily disabled.' });

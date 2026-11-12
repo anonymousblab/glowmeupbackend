@@ -15,6 +15,7 @@ createApp({
   database: createPool(config.databaseUrl),
   corsOrigin: config.corsOrigin,
   ai,
+  aiRequestLimit: ai?.requestLimits(),
 }).listen(config.port, () => {
   console.log(`GlowMeUp API listening on port ${config.port}`);
 });

@@ -42,3 +42,50 @@ test('ai routes require a session and report status', async () => {
   const glowy = await request(app).get('/api/glowy').set('Authorization', `Bearer ${'a'.repeat(64)}`);
   assert.equal(glowy.status, 401);
 });
+
+test('authenticated chat and photo routes retain their response contracts and share the user limit', async () => {
+  const database = {
+    query: async (sql) => {
+      if (sql.includes('select user_id from public.app_sessions')) return { rows: [{ user_id: 'user-1' }] };
+      if (sql.includes('select questionnaire from public.app_profiles')) return { rows: [{ questionnaire }] };
+      return { rows: [] };
+    },
+  };
+  const ai = {
+    chat: async () => ({
+      reply: {
+        reply: 'Try a neutral outfit.',
+        mode: 'ai',
+        referenced_product_ids: [],
+        uncertainties: [],
+        follow_up_question: null,
+      },
+      provider: 'openai',
+    }),
+    analyzePhoto: async () => ({ proposalId: 'mock-proposal' }),
+  };
+  const app = createApp({
+    database,
+    corsOrigin: 'http://localhost:8080',
+    ai,
+    aiRequestLimit: { maxCallsPerUserPerWindow: 2, windowMs: 60000 },
+  });
+  const auth = { Authorization: `Bearer ${'a'.repeat(64)}` };
+
+  const chat = await request(app).post('/api/ai/chat').set(auth).send({ message: 'What should I wear?' });
+  assert.equal(chat.status, 200);
+  assert.equal(chat.body.reply, 'Try a neutral outfit.');
+  assert.equal(chat.body.provider, 'openai');
+
+  const photo = await request(app).post('/api/ai/analyze-photo').set(auth).send({
+    captureType: 'face',
+    consent: true,
+    image: { mimeType: 'image/jpeg', dataBase64: 'dGVzdA==' },
+  });
+  assert.equal(photo.status, 200);
+  assert.deepEqual(photo.body, { proposalId: 'mock-proposal' });
+
+  const limited = await request(app).post('/api/ai/chat').set(auth).send({ message: 'One more request' });
+  assert.equal(limited.status, 429);
+  assert.equal(limited.body.code, 'AI_USER_RATE_LIMIT');
+});
