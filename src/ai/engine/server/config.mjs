@@ -106,7 +106,7 @@ export function providerConfigured(c) {
   );
 }
 export function openaiConfigured(c) {
-  return Boolean(
-    c.key && c.chatModel && c.visionModel && c.live && c.rotatedKeyConfirmed,
-  );
+  // Gate relaxed on request: operator accepts the risk of running without an
+  // explicit key-rotation confirmation.
+  return Boolean(c.key && c.chatModel && c.visionModel && c.live);
 }

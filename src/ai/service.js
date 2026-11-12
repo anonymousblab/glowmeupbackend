@@ -361,6 +361,10 @@ export class GlowyAiService {
     return Object.fromEntries(acceptedFields.map((f) => [f, values[f]]));
   }
 
+  scoreQuiz(choices) {
+    return scoreStyleQuiz(choices);
+  }
+
   validateFeedback(payload) {
     validate(feedbackSchema, payload);
     ensure(
